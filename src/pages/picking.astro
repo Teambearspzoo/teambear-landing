@@ -1,0 +1,533 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'System obsługi zamówień z pickingiem dla firm handlowych | Teambear';
+const description =
+  'Wdrażamy systemy obsługi zamówień z kolektorami dla rosnących polskich firm handlowych. Integracja z Twoim ERP i sklepem. On-prem. 3 miesiące do go-live.';
+
+const problems = [
+  {
+    icon: 'file',
+    title: 'Zamówienia drukowane na kartce.',
+    desc: 'Magazynier bierze listę, biega po magazynie w przypadkowej kolejności, zaznacza długopisem co wziął.',
+  },
+  {
+    icon: 'clock',
+    title: 'Picking trwa godzinami',
+    desc: 'zamiast minutami, bo towar leży zupełnie inaczej, niż klient zamówił.',
+  },
+  {
+    icon: 'pen',
+    title: 'Osoba w biurze przepisuje WZ-tki ręcznie',
+    desc: 'do Subiekta / Comarcha / Symfonii - grupuje, kalkuluje, wbija pozycję po pozycji.',
+  },
+  {
+    icon: 'x',
+    title: 'Reklamacji przybywa.',
+    desc: 'Zła pozycja, zła ilość, pomyłka w sezonie.',
+  },
+  {
+    icon: 'trending',
+    title: 'Sprzedaż mogłaby rosnąć szybciej.',
+    desc: 'Tylko magazyn już nie wyrabia.',
+  },
+];
+
+const offer = [
+  {
+    icon: 'phone',
+    title: 'Aplikacja na kolektor',
+    desc: 'Autorska aplikacja na kolektor - picking, zmiana statusu zamówienia, przypisywanie do magazynierów. Cztery ekrany. Magazynier ogarnia ją w jeden dzień.',
+  },
+  {
+    icon: 'monitor',
+    title: 'Portal webowy',
+    desc: 'Zarządzanie zamówieniami i produktami. Konfiguracja ścieżki pickingowej (regał / półka / slot). Role dla admina, biura, magazyniera.',
+  },
+  {
+    icon: 'box',
+    title: 'Kolektory w pakiecie',
+    desc: 'Dostarczamy gotowe do pracy. Rozpakowujesz, ładujesz, picking startuje. Bez kombinowania z MDM, konfiguracjami, dostawcami sprzętu.',
+  },
+  {
+    icon: 'plug',
+    title: 'Integracja z Twoimi systemami',
+    desc: 'Łączymy z Twoim ERP / systemem księgowym i Twoim sklepem e-commerce. Zakres integracji ustalamy w trakcie analizy procesu.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Bezpłatna analiza procesu (40 min, online)',
+    desc: 'Zaczynamy od rozmowy. Pokazujesz, jak wygląda obsługa zamówień dziś. Mówimy szczerze, czy nasz system ma sens w Twoim przypadku.',
+  },
+  {
+    title: 'Wizyta u Ciebie (3 dni on-site)',
+    desc: 'Konsultant przyjeżdża do magazynu. Mapujemy proces, projektujemy ścieżkę pickingową, ustalamy zakres integracji.',
+  },
+  {
+    title: 'Konfiguracja systemu',
+    desc: 'Konfigurujemy portal i aplikację pod Twój układ magazynu i Twoje procesy.',
+  },
+  {
+    title: 'Integracje',
+    desc: 'Łączymy z Twoim ERP / systemem księgowym i sklepem e-commerce.',
+  },
+  {
+    title: 'Dostawa kolektorów + szkolenie',
+    desc: 'Sprzęt przyjeżdża skonfigurowany. Szkolimy magazyn i biuro. Idziemy live.',
+  },
+  {
+    title: '3 miesiące supportu w cenie',
+    desc: 'Jesteśmy dostępni od pierwszego dnia. Reagujemy na bieżąco, dostrajamy proces.',
+  },
+];
+
+const usp = [
+  {
+    icon: 'target',
+    title: 'Robimy jedną rzecz',
+    desc: 'Nie sprzedajemy "wszystkiego" - pełnego WMS, ERP, e-commerce. Picking i obsługa zamówień. Tu jesteśmy konkretni i szybcy.',
+  },
+  {
+    icon: 'box',
+    title: 'Kolektor w pakiecie',
+    desc: 'Większość rozwiązań to czysty software - "kup sobie sprzęt sam". My przywozimy gotowe urządzenia. Włączasz i pracujesz.',
+  },
+  {
+    icon: 'lock',
+    title: 'On-prem na Twoim serwerze',
+    desc: 'Standardowo wdrażamy lokalnie. Twoje dane zostają u Ciebie. Nie blokujemy Cię chmurą. Hosting po naszej stronie też możliwy - wybór jest Twój.',
+  },
+];
+
+const metrics = [
+  { value: 'Ponad 2× szybciej', label: 'tyle skrócił się czas obsługi zamówienia' },
+  { value: '[XX h / tydzień]', label: 'tyle godzin biuro przestało spędzać na ręcznym wbijaniu WZ-tek', todo: true },
+  { value: '[XX %]', label: 'spadek liczby reklamacji z powodu błędów magazynu', todo: true },
+  { value: '3 miesiące', label: 'tyle trwało wdrożenie od podpisania do go-live' },
+];
+
+const forYou = [
+  'Masz własny magazyn (nie korzystasz z fulfillmentu)',
+  'Obracasz ponad 100 SKU',
+  'Realizujesz co najmniej 10 zamówień dziennie',
+  'Średnie zamówienie ma więcej niż jedną-dwie pozycje',
+  'Czas obsługi zamówień zaczyna ograniczać wzrost firmy',
+  'Masz już ERP / system księgowy, do którego chcesz to spiąć',
+];
+
+const notForYou = [
+  'Wysyłasz mniej niż 10 zamówień dziennie (zwrot z inwestycji nie nadąża)',
+  'Korzystasz z 3PL / fulfillmentu - nie masz własnego magazynu do optymalizacji',
+  'Szukasz pełnego WMS-u z inwentaryzacją, awizacjami, multi-warehouse',
+  'Chcesz gotowca SaaS w 200 zł/mc - to nie ten segment',
+];
+
+const faq = [
+  {
+    q: 'Ile to kosztuje?',
+    a: 'Wdrożenie typowo 80 000 - 150 000 PLN netto (jednorazowo, w cenie hardware). Maintenance 2 000 - 5 000 PLN/mc w zależności od SLA. Konkretną wycenę przygotowujemy po analizie procesu.',
+  },
+  {
+    q: 'Ile trwa wdrożenie?',
+    a: 'Około 3 miesięcy od podpisania umowy do uruchomienia na produkcji. Bez burzenia bieżącej pracy.',
+  },
+  {
+    q: 'Czy moi pracownicy ogarną kolektor?',
+    a: 'Aplikacja ma cztery ekrany. Magazynierzy uczą się jej w jeden dzień. Nie wymagamy znajomości technologii.',
+  },
+  {
+    q: 'Z jakimi systemami się integrujecie?',
+    a: 'Zaczynaliśmy od Subiekta GT i sklepu opartego o Medusę. Każdy kolejny system (Comarch, Symfonia, enova, WooCommerce, Shoper, IdoSell, Magento etc.) wymaga osobnego rozpoznania - robimy to bezpłatnie w trakcie analizy.',
+  },
+  {
+    q: 'Czy moje dane będą bezpieczne?',
+    a: 'Standardowo wdrażamy on-prem - system działa na Twoim serwerze, dane nigdy nie opuszczają Twojej infrastruktury. Możemy też hostować po naszej stronie, jeśli wolisz.',
+  },
+  {
+    q: 'Co, jeśli za rok zechcę rozszerzyć system?',
+    a: 'Kod jest Twój, dokumentacja Twoja. Możemy rozszerzać razem - albo każdy inny zespół developerski może podjąć się rozwoju. Bez vendor locka.',
+  },
+  {
+    q: 'Czy macie referencje?',
+    a: 'Tak. Pierwsza firma wdrożeniowa zgodziła się na rozmowę telefoniczną z zakwalifikowanymi prospektami. Dane przekazujemy na zaawansowanym etapie rozmów.',
+  },
+];
+
+const mailto =
+  'mailto:piotr.zaworski@teambear.io?subject=Bezp%C5%82atna%20analiza%20procesu%20-%20obs%C5%82uga%20zam%C3%B3wie%C5%84';
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen overflow-x-hidden" style="background-color:#1a1a1a;font-family:'Instrument Sans', sans-serif">
+    <Header />
+    <main>
+      <!-- SEKCJA 1: HERO -->
+      <section class="relative min-h-screen flex items-center bg-[#1a1a1a] overflow-hidden">
+        <div
+          class="absolute inset-0 opacity-[0.03]"
+          style="background-image:linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);background-size:60px 60px"
+        >
+        </div>
+        <div class="absolute top-1/4 right-1/4 w-[min(600px,100vw)] h-[min(600px,100vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20 w-full">
+          <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div class="lg:col-span-7">
+              <div class="reveal">
+                <span class="inline-block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-6">Obsługa zamówień + Picking</span>
+              </div>
+              <h1 class="reveal text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8">
+                Twoja sprzedaż rośnie.<br />
+                <span class="text-white/40">Magazyn nie nadąża.</span>
+              </h1>
+              <p class="reveal text-lg md:text-xl text-white/60 max-w-2xl mb-6 leading-relaxed">
+                Wdrażamy system obsługi zamówień z kolektorami dla polskich firm handlowych. Picking po zoptymalizowanej ścieżce, automatyczne WZ-tki w Twoim ERP, integracja z Twoim sklepem. <span class="text-white font-medium">Wdrożenie w 3 miesiące. On-prem na Twoim serwerze.</span>
+              </p>
+              <div class="reveal flex flex-col sm:flex-row gap-4 mb-6">
+                <a href={mailto} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:translate-y-[-2px]">
+                  Umów bezpłatną analizę procesu
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+              </div>
+              <p class="reveal text-white/40 text-sm italic">Bez prezentacji. 40 minut z konsultantem, który zna magazyn.</p>
+              <p class="reveal text-white/30 text-xs mt-8 max-w-xl">Pierwsze wdrożenie zrealizowane. Polski software house Teambear. On-prem lub chmura.</p>
+            </div>
+            <div class="reveal lg:col-span-5">
+              <div class="relative rounded-2xl bg-white/[0.02] border border-white/5 p-8 overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-48 h-48 bg-[#FF5A2D]/10 rounded-full blur-[80px] pointer-events-none"></div>
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-6">
+                    <span class="text-white/40 text-xs uppercase tracking-widest">Kolektor</span>
+                    <span class="flex items-center gap-2 text-[#FF5A2D] text-xs font-medium">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#FF5A2D]"></span>online
+                    </span>
+                  </div>
+                  <div class="space-y-3">
+                    {
+                      [
+                        { sku: 'SKU 4821', name: 'Profil aluminiowy 40x40', qty: '12 szt', done: true },
+                        { sku: 'SKU 1190', name: 'Kątownik montażowy', qty: '4 szt', done: true },
+                        { sku: 'SKU 7732', name: 'Zaślepka PCV czarna', qty: '30 szt', done: false },
+                        { sku: 'SKU 0461', name: 'Śruba M8 ocynk', qty: '120 szt', done: false },
+                      ].map((row) => (
+                        <div class={`flex items-center gap-3 p-4 rounded-xl border ${row.done ? 'bg-[#FF5A2D]/[0.06] border-[#FF5A2D]/20' : 'bg-white/[0.02] border-white/5'}`}>
+                          <span class={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${row.done ? 'bg-[#FF5A2D]/20' : 'bg-white/5'}`}>
+                            {row.done && (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-[#FF5A2D]" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                            )}
+                          </span>
+                          <div class="flex-1 min-w-0">
+                            <p class="text-white text-sm font-medium truncate">{row.name}</p>
+                            <p class="text-white/30 text-xs">{row.sku}</p>
+                          </div>
+                          <span class="text-white/50 text-sm font-medium shrink-0">{row.qty}</span>
+                        </div>
+                      ))
+                    }
+                  </div>
+                  <div class="mt-6 flex items-center justify-between text-xs">
+                    <span class="text-white/30">Zamówienie #2041</span>
+                    <span class="text-[#FF5A2D]">2 / 4 pozycje</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 2: PROBLEM -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+          <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
+            <div class="lg:col-span-4">
+              <div class="reveal sticky top-32">
+                <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//01</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Rozpoznajesz<br /><span class="text-white/40">się w tym?</span></h2>
+                <p class="text-white/50 text-lg leading-relaxed">Każdy z tych punktów to godziny pracy tygodniowo. I bottleneck, który zamyka Ci skalowanie firmy.</p>
+              </div>
+            </div>
+            <div class="lg:col-span-8">
+              <div class="space-y-0">
+                {
+                  problems.map((p, i) => (
+                    <div class="reveal group border-t border-white/10 py-8 first:border-t-0 first:pt-0">
+                      <div class="flex items-start gap-6">
+                        <span class="text-white/20 text-sm font-medium mt-1">{String(i + 1).padStart(2, '0')}</span>
+                        <div class="w-10 h-10 rounded-lg bg-[#FF5A2D]/10 flex items-center justify-center shrink-0 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-[#FF5A2D]" aria-hidden="true">
+                            {p.icon === 'file' && (<><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></>)}
+                            {p.icon === 'clock' && (<><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>)}
+                            {p.icon === 'pen' && (<><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></>)}
+                            {p.icon === 'x' && (<><circle cx="12" cy="12" r="10" /><path d="m15 9-6 6" /><path d="m9 9 6 6" /></>)}
+                            {p.icon === 'trending' && (<><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></>)}
+                          </svg>
+                        </div>
+                        <p class="flex-1 text-white/60 leading-relaxed text-lg">
+                          <span class="text-white font-semibold">{p.title}</span> {p.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 3: STAN DOCELOWY -->
+      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(900px,100vw)] h-[min(500px,60vw)] bg-[#FF5A2D]/[0.07] rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 text-center">
+          <span class="reveal text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//02</span>
+          <h2 class="reveal text-4xl md:text-5xl font-bold text-white leading-tight mb-10">Tak wygląda magazyn<br /><span class="text-white/40">z naszym systemem</span></h2>
+          <div class="reveal space-y-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+            <p>Magazynier widzi na kolektorze listę zamówień, które są wolne. Wybiera jedno - system przypisuje je do niego. Idzie po <span class="text-white font-medium">zoptymalizowanej ścieżce</span> dopasowanej do Twojego magazynu. Skanuje kod, wpisuje ilość, idzie dalej.</p>
+            <p>Po skompletowaniu - <span class="text-white font-medium">jedno kliknięcie</span>. WZ albo faktura <span class="text-white font-medium">automatycznie</span> ląduje w Twoim ERP. Zamówienia ze sklepu spływają same. Reszta zespołu widzi wszystko w portalu webowym.</p>
+          </div>
+          <p class="reveal text-2xl md:text-3xl font-bold text-white mt-12 mb-10">Zero kartek. Zero przepisywania. Zero biegania w kółko.</p>
+          <div class="reveal">
+            <a href={mailto} class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300">
+              Umów 40 min - pokażemy jak to działa u Ciebie
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 4: CO DOSTAJESZ -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="absolute top-1/3 right-1/4 w-[min(600px,100vw)] h-[min(600px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          <div class="reveal text-center mb-20">
+            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//03</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Co dostajesz w pakiecie</h2>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+            {
+              offer.map((o) => (
+                <div class="reveal group">
+                  <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
+                    <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center mb-6 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#FF5A2D]" aria-hidden="true">
+                        {o.icon === 'phone' && (<><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></>)}
+                        {o.icon === 'monitor' && (<><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></>)}
+                        {o.icon === 'box' && (<><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></>)}
+                        {o.icon === 'plug' && (<><path d="M9 17H7A5 5 0 0 1 7 7h2" /><path d="M15 7h2a5 5 0 1 1 0 10h-2" /><line x1="8" x2="16" y1="12" y2="12" /></>)}
+                      </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{o.title}</h3>
+                    <p class="text-white/50 leading-relaxed">{o.desc}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 5: JAK PRACUJEMY -->
+      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+          <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
+            <div class="lg:col-span-5">
+              <div class="reveal sticky top-32">
+                <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//04</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Jak wygląda wdrożenie<br /><span class="text-white/40">krok po kroku</span></h2>
+                <p class="text-white/50 text-lg leading-relaxed">Łącznie ~3 miesiące od podpisania umowy do go-live.</p>
+              </div>
+            </div>
+            <div class="lg:col-span-7">
+              <div class="space-y-8">
+                {
+                  steps.map((s, i) => (
+                    <div class="reveal group">
+                      <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
+                        <div class="flex items-start gap-6">
+                          <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center shrink-0">
+                            <span class="text-[#FF5A2D] font-bold text-lg">{String(i + 1).padStart(2, '0')}</span>
+                          </div>
+                          <div>
+                            <h3 class="text-xl md:text-2xl font-semibold text-white mb-3 group-hover:text-[#FF5A2D] transition-colors duration-300">{s.title}</h3>
+                            <p class="text-white/50 leading-relaxed">{s.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 6: USP -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+          <div class="reveal text-center mb-20">
+            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//05</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Dlaczego to działa<br /><span class="text-white/40">lepiej niż alternatywy</span></h2>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            {
+              usp.map((u) => (
+                <div class="reveal group">
+                  <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
+                    <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center mb-6 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#FF5A2D]" aria-hidden="true">
+                        {u.icon === 'target' && (<><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>)}
+                        {u.icon === 'box' && (<><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></>)}
+                        {u.icon === 'lock' && (<><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>)}
+                      </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{u.title}</h3>
+                    <p class="text-white/50 leading-relaxed">{u.desc}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 7: CASE STUDY -->
+      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+        <div class="absolute top-1/4 right-1/4 w-[min(600px,100vw)] h-[min(600px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
+          <div class="reveal text-center mb-12">
+            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//06</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Pierwsze wdrożenie</h2>
+            <p class="text-white/50 text-lg leading-relaxed max-w-2xl mx-auto"><span class="text-white font-medium">Polska firma handlowa średniej wielkości.</span> Własny magazyn, sklep e-commerce, ERP klasy SMB. Obsługa zamówień stała się wąskim gardłem skalowania.</p>
+          </div>
+          <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {
+              metrics.map((m) => (
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-center">
+                  <p class={`text-2xl md:text-3xl font-bold mb-3 ${m.todo ? 'text-white/30' : 'text-[#FF5A2D]'}`}>{m.value}</p>
+                  <p class="text-white/40 text-sm leading-relaxed">{m.label}</p>
+                  {m.todo && <p class="text-white/20 text-xs mt-2 italic">(do uzupełnienia)</p>}
+                </div>
+              ))
+            }
+          </div>
+          <div class="reveal max-w-3xl mx-auto text-center">
+            <p class="text-white/60 text-lg leading-relaxed mb-10">Zaczęliśmy od trzech dni u klienta - zmapowaliśmy proces, zaprojektowaliśmy ścieżkę pickingową, ustaliliśmy zakres integracji z Subiektem i sklepem. Po trzech miesiącach magazyn pracuje z pięcioma kolektorami, WZ-tki wystawiają się automatycznie, a zamówienia spływają ze sklepu bez przepisywania.</p>
+            <a href={mailto} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:translate-y-[-2px]">
+              Chcę podobny wynik - umów rozmowę
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+            <p class="text-white/30 text-sm mt-8 max-w-xl mx-auto">Klient referencyjny prosił o anonimowość - pełne dane referencyjne dostępne na zaawansowanym etapie rozmów.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 8: DLA KOGO -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+          <div class="reveal text-center mb-20">
+            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//07</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Sprawdź, czy to rozwiązanie<br /><span class="text-white/40">pasuje do Twojej firmy</span></h2>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="reveal">
+              <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-[#FF5A2D]/20">
+                <h3 class="flex items-center gap-3 text-xl font-semibold text-white mb-8">
+                  <span class="w-8 h-8 rounded-lg bg-[#FF5A2D]/15 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-[#FF5A2D]" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                  </span>
+                  To dla Ciebie, jeśli:
+                </h3>
+                <ul class="space-y-4">
+                  {
+                    forYou.map((item) => (
+                      <li class="flex items-start gap-3 text-white/60 leading-relaxed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-[#FF5A2D] mt-1 shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                        <span>{item}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+            <div class="reveal">
+              <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/10">
+                <h3 class="flex items-center gap-3 text-xl font-semibold text-white mb-8">
+                  <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                  </span>
+                  To NIE dla Ciebie, jeśli:
+                </h3>
+                <ul class="space-y-4">
+                  {
+                    notForYou.map((item) => (
+                      <li class="flex items-start gap-3 text-white/40 leading-relaxed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/30 mt-1 shrink-0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                        <span>{item}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="reveal text-center text-white/30 text-sm mt-10 italic">Wolimy uprzedzić niż sprzedać coś, co nie pasuje.</p>
+        </div>
+      </section>
+
+      <!-- SEKCJA 9: FAQ -->
+      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto px-6 lg:px-12">
+          <div class="reveal text-center mb-16">
+            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//08</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Najczęstsze pytania</h2>
+          </div>
+          <div class="space-y-4">
+            {
+              faq.map((f) => (
+                <details class="reveal group rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 transition-all duration-500 [&_svg]:open:rotate-45">
+                  <summary class="flex items-center justify-between gap-6 p-6 cursor-pointer list-none">
+                    <span class="text-lg font-semibold text-white">{f.q}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-[#FF5A2D] shrink-0 transition-transform duration-300" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                  </summary>
+                  <p class="px-6 pb-6 text-white/50 leading-relaxed">{f.a}</p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 10: CTA FINALNE -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(800px,100vw)] h-[min(400px,50vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="reveal relative z-10 max-w-3xl mx-auto px-6 lg:px-12 text-center">
+          <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Zacznij od 40 minut.<br /><span class="text-white/40">Bez prezentacji. Bez zobowiązań.</span></h2>
+          <p class="text-white/50 text-lg leading-relaxed mb-10 max-w-xl mx-auto">Pokażesz nam, jak wygląda obsługa zamówień u Ciebie. Powiemy szczerze, czy nasz system ma sens - i ile zaoszczędzisz, jeśli ma.</p>
+          <a href={mailto} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:translate-y-[-2px]">
+            Umów rozmowę
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <p class="text-white/30 text-sm mt-6 italic">Albo zostaw kontakt, oddzwonimy w ciągu 24h.</p>
+          <div class="mt-12 inline-flex flex-col sm:flex-row gap-6 sm:gap-10 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+            <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+              <span class="text-sm">piotr.zaworski@teambear.io</span>
+            </a>
+            <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+              <span class="text-sm">+48 537 341 796</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</Layout>
