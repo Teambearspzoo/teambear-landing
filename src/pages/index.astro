@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import TeamBearWay from '../components/TeamBearWay.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <div class="min-h-screen overflow-x-hidden" style="background-color:#1a1a1a;font-family:'Instrument Sans', sans-serif">
+    <Header />
+    <main>
+      <Hero />
+      <Services />
+      <TeamBearWay />
+      <Portfolio />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+</Layout>

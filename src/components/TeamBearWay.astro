@@ -1,0 +1,44 @@
+---
+import { content } from '../i18n';
+const t = content.pl.way;
+
+const items = t.items.map((item, i) => ({ n: String(i + 1).padStart(2, '0'), ...item }));
+---
+
+<section class="bg-[#141414] py-32 relative overflow-hidden">
+  <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
+      <div class="lg:col-span-5">
+        <div class="reveal sticky top-32">
+          <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//03</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            <span data-i18n="way.title1">{t.title1}</span><br /><span data-i18n="way.title2" class="text-white/40">{t.title2}</span>
+          </h2>
+          <p data-i18n="way.lead" class="text-white/50 text-lg leading-relaxed">{t.lead}</p>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="space-y-12">
+          {
+            items.map((w, i) => (
+              <div class="reveal group">
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
+                  <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center shrink-0">
+                      <span class="text-[#FF5A2D] font-bold text-lg">{w.n}</span>
+                    </div>
+                    <div>
+                      <h3 data-i18n={`way.items.${i}.title`} class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{w.title}</h3>
+                      <p data-i18n={`way.items.${i}.desc`} class="text-white/50 leading-relaxed">{w.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

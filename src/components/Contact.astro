@@ -1,0 +1,44 @@
+---
+import { content } from '../i18n';
+const t = content.pl.contact;
+---
+
+<section id="kontakt" class="bg-[#141414] py-32 relative overflow-hidden">
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(800px,100vw)] h-[min(400px,50vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+      <div class="reveal">
+        <span data-i18n="contact.eyebrow" class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">{t.eyebrow}</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+          <span data-i18n="contact.title1">{t.title1}</span><br /><span data-i18n="contact.title2" class="text-white/40">{t.title2}</span>
+        </h2>
+        <p data-i18n="contact.lead" class="text-white/50 text-lg leading-relaxed max-w-md">{t.lead}</p>
+      </div>
+      <div>
+        <div class="reveal group">
+          <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 transition-all duration-500">
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold text-white mb-1">Piotr Zaworski</h3>
+              <p data-i18n="contact.role" class="text-white/40 text-sm">{t.role}</p>
+            </div>
+            <div class="space-y-3">
+              <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true">
+                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                </svg>
+                <span class="text-sm">piotr.zaworski@teambear.io</span>
+              </a>
+              <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true">
+                  <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
+                </svg>
+                <span class="text-sm">+48 537 341 796</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
