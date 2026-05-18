@@ -1,20 +1,9 @@
 ---
 import { content } from '../i18n';
+import { projects as projectMeta } from '../projects';
 const t = content.pl.portfolio;
 
-const images = [
-  '/portfolio-anodizing.png',
-  '/portfolio-distribution.png',
-  '/portfolio-dealers.png',
-  '/portfolio-fleet.png',
-];
-const tags = [
-  ['CRM', 'PDF Generation', 'Live Chat', 'BI'],
-  ['BI', 'CRM', 'ERP Integration', 'Real-time'],
-  ['Ruby on Rails', 'PostgreSQL', 'PDF', 'Fast Delivery'],
-  ['Fleet Management', 'Automation', 'ERP Integration'],
-];
-const projects = t.projects.map((p, i) => ({ img: images[i], tags: tags[i], ...p }));
+const projects = t.projects.map((p, i) => ({ ...projectMeta[i], ...p }));
 ---
 
 <section id="portfolio" class="bg-[#141414] py-32 relative overflow-hidden">
@@ -29,11 +18,11 @@ const projects = t.projects.map((p, i) => ({ img: images[i], tags: tags[i], ...p
       {
         projects.map((p, i) => (
           <div class="reveal group">
-            <a href="#kontakt" class="block h-full">
+            <a href={`/portfolio/${p.slug}`} class="block h-full">
               <div class="h-full rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500 overflow-hidden">
                 <div class="relative h-64 overflow-hidden bg-gradient-to-br from-[#FF5A2D]/10 to-[#FF5A2D]/5">
                   <img
-                    src={p.img}
+                    src={p.image}
                     alt={p.title}
                     class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                   />

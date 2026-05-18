@@ -42,11 +42,56 @@ export const content = {
       lead: 'Wybrane projekty, które zrealizowaliśmy dla naszych klientów.',
       category: 'Aplikacja webowa',
       projects: [
-        { title: 'System ofertowania dla firmy anodującej', desc: 'Kompleksowe narzędzie wspomagające proces tworzenia ofert w firmie zajmującej się anodowaniem elementów aluminiowych. System obejmuje obsługę zapytań ofertowych, generację ofert PDF, elementy CRM oraz moduł czatu na żywo.' },
-        { title: 'System BI i CRM dla dystrybutora', desc: 'Aplikacja integrująca się z systemem ERP, przetwarzająca dane i generująca raporty. Rozszerzona o elementy CRM, dashboard dla przedstawicieli handlowych, moduł ofertowania oraz system powiadomień w czasie rzeczywistym.' },
-        { title: 'Platforma ofertowania dla importerów samochodowych', desc: 'System umożliwiający tworzenie wysokiej jakości ofert handlowych w formacie PDF. Powstał w 2 dni od koncepcji do implementacji. Pozwala na definiowanie akcji sprzedażowych, monitorowanie statystyk oraz zarządzanie premiami.' },
-        { title: 'System zarządzania flotą wynajmu samochodów', desc: 'Optymalizacja wykorzystania floty poprzez automatyczne układanie planu rezerwacji. Kontrola zdarzeń serwisowych, rozliczanie dosprzedaży lotniskowej oraz integracja z systemami rezerwacji i ERP.' },
+        {
+          title: 'System ofertowania dla firmy anodującej',
+          desc: 'Kompleksowe narzędzie wspomagające proces tworzenia ofert w firmie zajmującej się anodowaniem elementów aluminiowych. System obejmuje obsługę zapytań ofertowych, generację ofert PDF, elementy CRM oraz moduł czatu na żywo.',
+          highlights: [
+            'Obsługa zapytań ofertowych',
+            'Generacja ofert w formacie PDF',
+            'Elementy CRM',
+            'Moduł czatu na żywo',
+          ],
+        },
+        {
+          title: 'System BI i CRM dla dystrybutora',
+          desc: 'Aplikacja integrująca się z systemem ERP, przetwarzająca dane i generująca raporty. Rozszerzona o elementy CRM, dashboard dla przedstawicieli handlowych, moduł ofertowania oraz system powiadomień w czasie rzeczywistym.',
+          highlights: [
+            'Integracja z systemem ERP',
+            'Przetwarzanie danych i generowanie raportów',
+            'Dashboard dla przedstawicieli handlowych',
+            'Powiadomienia w czasie rzeczywistym',
+          ],
+        },
+        {
+          title: 'Platforma ofertowania dla importerów samochodowych',
+          desc: 'System umożliwiający tworzenie wysokiej jakości ofert handlowych w formacie PDF. Powstał w 2 dni od koncepcji do implementacji. Pozwala na definiowanie akcji sprzedażowych, monitorowanie statystyk oraz zarządzanie premiami.',
+          highlights: [
+            'Oferty handlowe w formacie PDF',
+            'Od koncepcji do wdrożenia w 2 dni',
+            'Definiowanie akcji sprzedażowych',
+            'Monitorowanie statystyk i zarządzanie premiami',
+          ],
+        },
+        {
+          title: 'System zarządzania flotą wynajmu samochodów',
+          desc: 'Optymalizacja wykorzystania floty poprzez automatyczne układanie planu rezerwacji. Kontrola zdarzeń serwisowych, rozliczanie dosprzedaży lotniskowej oraz integracja z systemami rezerwacji i ERP.',
+          highlights: [
+            'Automatyczne układanie planu rezerwacji',
+            'Kontrola zdarzeń serwisowych',
+            'Rozliczanie dosprzedaży lotniskowej',
+            'Integracja z systemami rezerwacji i ERP',
+          ],
+        },
       ],
+    },
+    projectPage: {
+      back: 'Wróć do portfolio',
+      overview: 'O projekcie',
+      whatWeDid: 'Co zrobiliśmy',
+      technologies: 'Technologie',
+      ctaTitle: 'Masz podobny projekt?',
+      ctaLead: 'Skontaktuj się z nami, aby omówić jak możemy pomóc w cyfryzacji i automatyzacji Twojego biznesu.',
+      ctaButton: 'Porozmawiajmy',
     },
     contact: {
       eyebrow: '//Kontakt',
@@ -97,11 +142,56 @@ export const content = {
       lead: 'Selected projects we have delivered for our clients.',
       category: 'Web application',
       projects: [
-        { title: 'Quoting system for an anodizing company', desc: 'A comprehensive tool supporting the quote-creation process at a company anodizing aluminium components. The system covers handling of quote requests, PDF quote generation, CRM elements and a live chat module.' },
-        { title: 'BI and CRM system for a distributor', desc: 'An application integrating with an ERP system, processing data and generating reports. Extended with CRM elements, a dashboard for sales representatives, a quoting module and a real-time notification system.' },
-        { title: 'Quoting platform for car importers', desc: 'A system enabling the creation of high-quality commercial offers in PDF format. Built in 2 days from concept to implementation. It allows defining sales campaigns, monitoring statistics and managing bonuses.' },
-        { title: 'Car rental fleet management system', desc: 'Optimizing fleet utilization through automatic scheduling of the reservation plan. Control of service events, settlement of airport upselling and integration with reservation and ERP systems.' },
+        {
+          title: 'Quoting system for an anodizing company',
+          desc: 'A comprehensive tool supporting the quote-creation process at a company anodizing aluminium components. The system covers handling of quote requests, PDF quote generation, CRM elements and a live chat module.',
+          highlights: [
+            'Handling of quote requests',
+            'PDF quote generation',
+            'CRM elements',
+            'Live chat module',
+          ],
+        },
+        {
+          title: 'BI and CRM system for a distributor',
+          desc: 'An application integrating with an ERP system, processing data and generating reports. Extended with CRM elements, a dashboard for sales representatives, a quoting module and a real-time notification system.',
+          highlights: [
+            'ERP system integration',
+            'Data processing and report generation',
+            'Dashboard for sales representatives',
+            'Real-time notifications',
+          ],
+        },
+        {
+          title: 'Quoting platform for car importers',
+          desc: 'A system enabling the creation of high-quality commercial offers in PDF format. Built in 2 days from concept to implementation. It allows defining sales campaigns, monitoring statistics and managing bonuses.',
+          highlights: [
+            'Commercial offers in PDF format',
+            'From concept to launch in 2 days',
+            'Defining sales campaigns',
+            'Statistics monitoring and bonus management',
+          ],
+        },
+        {
+          title: 'Car rental fleet management system',
+          desc: 'Optimizing fleet utilization through automatic scheduling of the reservation plan. Control of service events, settlement of airport upselling and integration with reservation and ERP systems.',
+          highlights: [
+            'Automatic reservation scheduling',
+            'Service event control',
+            'Airport upselling settlement',
+            'Integration with reservation and ERP systems',
+          ],
+        },
       ],
+    },
+    projectPage: {
+      back: 'Back to portfolio',
+      overview: 'About the project',
+      whatWeDid: 'What we did',
+      technologies: 'Technologies',
+      ctaTitle: 'Have a similar project?',
+      ctaLead: 'Get in touch to discuss how we can help digitalize and automate your business.',
+      ctaButton: "Let's talk",
     },
     contact: {
       eyebrow: '//Contact',

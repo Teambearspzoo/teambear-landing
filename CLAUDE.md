@@ -25,8 +25,10 @@ All copy is in Polish and must be reproduced verbatim from the source. Do not us
 
 ## Architecture
 
-- `src/pages/index.astro` - the only route. Pure composition: imports `Layout` and the
+- `src/pages/index.astro` - the landing route. Pure composition: imports `Layout` and the
   seven section components, no markup logic of its own.
+- `src/pages/portfolio/[slug].astro` - statically generated detail page per project
+  (`getStaticPaths` over `src/projects.ts`). Reuses `Layout` + `Header` + `Footer`.
 - `src/layouts/Layout.astro` - `<head>` (title, meta description, Instrument Sans from
   Google Fonts, favicon) plus two inline client scripts shared by all pages:
   1. **Scroll-reveal**: an `IntersectionObserver` adds `is-visible` to every `.reveal`
@@ -54,5 +56,14 @@ All copy is in Polish and must be reproduced verbatim from the source. Do not us
 - Static assets (logo, favicon, `portfolio-*.png`) live in `public/` and are referenced by
   root-absolute paths. The portfolio images were originally hosted on Appwrite Cloud and
   copied locally so the site is self-contained.
-- The live site links portfolio cards to `/portfolio/<slug>` detail pages that do not
-  exist here; cards intentionally point to `#kontakt` instead to avoid 404s.
+- Portfolio data is split by concern: `src/projects.ts` holds language-independent
+  metadata (`slug`, `image` card thumbnail, `images` carousel gallery, `tags`);
+  `src/i18n.ts` holds the localized `title`, `desc`, and `highlights`. The detail page
+  renders the gallery via `src/components/Carousel.astro` (self-contained vanilla-JS
+  slider; its `<script>` auto-inits every `[data-carousel]`). The listing and `[slug]` page join the two **by array index**, so the
+  order of `projects` in `projects.ts` must stay in sync with
+  `content.<lang>.portfolio.projects`. The live site's detail pages are dynamic/auth-gated
+  with no scrapeable content, so these pages are an original design built from that data.
+- Gallery image folders under `public/portfolio/` do **not** all match their slug:
+  `anodizing` → `anoding/`, `fleet` → `tet/` (the other two match). The mapping lives
+  explicitly in each project's `images` array in `src/projects.ts`.
