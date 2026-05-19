@@ -7,7 +7,7 @@ export type Lang = 'pl' | 'en';
 
 export const content = {
   pl: {
-    nav: { uslugi: 'Usługi', portfolio: 'Portfolio', kontakt: 'Kontakt', talk: 'Porozmawiajmy' },
+    nav: { uslugi: 'Usługi', portfolio: 'Portfolio', picking: '//PICKING', kontakt: 'Kontakt', talk: 'Porozmawiajmy' },
     hero: {
       eyebrow: 'Cyfryzacja + Automatyzacja',
       title1: 'Przekształcamy procesy',
@@ -278,7 +278,7 @@ export const content = {
   },
 
   en: {
-    nav: { uslugi: 'Services', portfolio: 'Portfolio', kontakt: 'Contact', talk: "Let's talk" },
+    nav: { uslugi: 'Services', portfolio: 'Portfolio', picking: '//PICKING', kontakt: 'Contact', talk: "Let's talk" },
     hero: {
       eyebrow: 'Digitalization + Automation',
       title1: 'We turn processes',

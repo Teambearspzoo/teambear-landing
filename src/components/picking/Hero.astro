@@ -1,6 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 import { content } from '../../i18n';
+import { url } from '../../lib/url';
 import { mailtoMain } from './links';
 
 const t = content.pl.picking;
@@ -46,7 +47,7 @@ const t = content.pl.picking;
             <span data-i18n="picking.hero.cta1">{t.hero.cta1}</span>
             <Icon name="arrowRight" class="w-4 h-4" />
           </a>
-          <a href="/teambear-picking-onepager.pdf" download="TeamBear-picking-one-pager.pdf" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300">
+          <a href={url('/teambear-picking-onepager.pdf')} download="TeamBear-picking-one-pager.pdf" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300">
             <span data-i18n="picking.hero.cta2">{t.hero.cta2}</span>
             <Icon name="download" class="w-4 h-4" />
           </a>

@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 interface Props {
   images?: string[];
   alt: string;
@@ -13,7 +14,7 @@ const multiple = images.length > 1;
       images.map((src, i) => (
         <div class="w-full shrink-0">
           <img
-            src={src}
+            src={url(src)}
             alt={`${alt} - ${i + 1}`}
             loading={i === 0 ? 'eager' : 'lazy'}
             class="w-full aspect-video object-contain"

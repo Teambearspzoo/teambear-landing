@@ -1,23 +1,25 @@
 ---
 import { content } from '../i18n';
+import { url } from '../lib/url';
 const t = content.pl;
 
 const navLinks = [
-  { href: '#uslugi', key: 'nav.uslugi', label: t.nav.uslugi },
-  { href: '#portfolio', key: 'nav.portfolio', label: t.nav.portfolio },
-  { href: '#kontakt', key: 'nav.kontakt', label: t.nav.kontakt },
+  { href: '/#uslugi', key: 'nav.uslugi', label: t.nav.uslugi },
+  { href: '/#portfolio', key: 'nav.portfolio', label: t.nav.portfolio },
+  { href: '/#kontakt', key: 'nav.kontakt', label: t.nav.kontakt },
+  { href: '/picking', key: 'nav.picking', label: t.nav.picking },
 ];
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/90 backdrop-blur-sm border-b border-white/5">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 group">
-      <img src="/teambear-logo.png" alt="TeamBear" class="h-8 group-hover:opacity-90 transition-opacity" />
+    <a href={url('/')} class="flex items-center gap-3 group">
+      <img src={url('/teambear-logo.png')} alt="TeamBear" class="h-8 group-hover:opacity-90 transition-opacity" />
     </a>
     <nav class="hidden md:flex items-center gap-8">
       {
         navLinks.map((l) => (
-          <a href={l.href} data-i18n={l.key} class="text-sm text-white/60 hover:text-white transition-colors duration-300">
+          <a href={url(l.href)} data-i18n={l.key} class="text-sm text-white/60 hover:text-white transition-colors duration-300">
             {l.label}
           </a>
         ))
@@ -30,7 +32,7 @@ const navLinks = [
           <button data-lang="en" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-300 text-white/60 hover:text-white">EN</button>
         </div>
       </div>
-      <a href="#kontakt" data-i18n="nav.talk" class="hidden md:inline-flex px-5 py-2.5 bg-[#FF5A2D] text-white text-sm font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-colors duration-300">{t.nav.talk}</a>
+      <a href={url("/#kontakt")} data-i18n="nav.talk" class="hidden md:inline-flex px-5 py-2.5 bg-[#FF5A2D] text-white text-sm font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-colors duration-300">{t.nav.talk}</a>
       <button data-menu-toggle class="md:hidden p-2 text-white/60 hover:text-white transition-colors" aria-label="Toggle menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true">
           <path d="M4 5h16"></path>
@@ -44,12 +46,12 @@ const navLinks = [
     <nav class="flex flex-col gap-4">
       {
         navLinks.map((l) => (
-          <a href={l.href} data-i18n={l.key} class="text-sm text-white/60 hover:text-white transition-colors duration-300">
+          <a href={url(l.href)} data-i18n={l.key} class="text-sm text-white/60 hover:text-white transition-colors duration-300">
             {l.label}
           </a>
         ))
       }
-      <a href="#kontakt" data-i18n="nav.talk" class="inline-flex w-fit px-5 py-2.5 bg-[#FF5A2D] text-white text-sm font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-colors duration-300">{t.nav.talk}</a>
+      <a href={url("/#kontakt")} data-i18n="nav.talk" class="inline-flex w-fit px-5 py-2.5 bg-[#FF5A2D] text-white text-sm font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-colors duration-300">{t.nav.talk}</a>
       <div class="flex items-center gap-1 bg-white/5 rounded-lg p-1 w-fit">
         <button data-lang="pl" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-300 bg-[#FF5A2D] text-white">PL</button>
         <button data-lang="en" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-300 text-white/60 hover:text-white">EN</button>

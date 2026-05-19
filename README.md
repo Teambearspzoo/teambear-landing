@@ -42,4 +42,15 @@ All commands are run from the root of the project:
 
 The site is built to static files (`npm run build` → `dist/`) and published to
 GitHub Pages via the workflow in `.github/workflows/deploy.yml` on every push to
-`master`, served from the custom domain `teambear.io` (see `public/CNAME`).
+`master`.
+
+The deploy target is env-driven (see `astro.config.mjs`), so the same codebase
+works on both URLs without code changes:
+
+- **Now (no custom domain yet):** builds with `base: '/teambear-landing'` and is
+  served at `https://teambearspzoo.github.io/teambear-landing/`. All internal
+  links/assets go through `src/lib/url.ts` so they stay correct under the subpath.
+- **Later (custom domain connected):** set repository/Actions variable
+  `SITE_DOMAIN=teambear.io` and add a `public/CNAME` file containing `teambear.io`.
+  The build then switches to `site: https://teambear.io` with `base: '/'` and is
+  served from the domain root. Nothing else needs to change.

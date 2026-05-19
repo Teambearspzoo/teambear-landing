@@ -1,6 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 import { content } from '../../i18n';
+import { url } from '../../lib/url';
 
 const t = content.pl.picking;
 const tf = content.pl.footer;
@@ -11,7 +12,7 @@ const tf = content.pl.footer;
   <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
     <div class="grid lg:grid-cols-12 gap-12">
       <div class="lg:col-span-5">
-        <img src="/teambear-logo.png" alt="TeamBear" class="h-8 mb-6" />
+        <img src={url('/teambear-logo.png')} alt="TeamBear" class="h-8 mb-6" />
         <p data-i18n="picking.footer.desc" class="text-white/50 text-sm leading-relaxed max-w-sm">
           {t.footer.desc}
         </p>
