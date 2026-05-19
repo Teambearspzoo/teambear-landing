@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# TeamBear
 
-```sh
-npm create astro@latest -- --template minimal
-```
+The official TeamBear marketing site - a single-page static site built with
+[Astro](https://astro.build/) and Tailwind v4, deployed at
+[teambear.io](https://teambear.io/). This is the canonical and only TeamBear site.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+It includes the main landing page, statically generated portfolio detail pages,
+and the `/picking` campaign page (system obsługi zamówień z pickingiem).
 
-## 🚀 Project Structure
+## Requirements
 
-Inside of your Astro project, you'll see the following folders and files:
+- Node.js >= 22.12.0
+
+## Commands
+
+All commands are run from the root of the project:
+
+| Command                 | Action                                            |
+| :---------------------- | :------------------------------------------------ |
+| `npm install`           | Install dependencies                              |
+| `npm run dev`           | Start the dev server at `localhost:4321`          |
+| `npm run build`         | Build the static site to `./dist/`                |
+| `npm run preview`       | Preview the production build locally              |
+| `npm run astro check`   | Type-check `.astro` files (strict tsconfig)       |
+
+## Project structure
 
 ```text
 /
-├── public/
+├── public/              # static assets (logo, favicon, portfolio images)
+├── scripts/onepager/    # generator for the /picking one-pager PDF
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/      # one component per page section (+ picking/)
+│   ├── layouts/         # shared <head> and client scripts
+│   ├── pages/           # routes: index, picking, portfolio/[slug]
+│   ├── i18n.ts          # localized copy (PL/EN)
+│   └── projects.ts      # portfolio metadata
+└── astro.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site is built to static files (`npm run build` → `dist/`) and published to
+GitHub Pages via the workflow in `.github/workflows/deploy.yml` on every push to
+`master`, served from the custom domain `teambear.io` (see `public/CNAME`).

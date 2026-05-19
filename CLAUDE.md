@@ -13,14 +13,10 @@ No test suite or linter is configured. Requires Node >= 22.12.0.
 
 ## What this is
 
-A single-page static marketing site for TeamBear - a faithful visual clone of the live
-production site at https://www.teambear.io/ (whose canonical host is `www.teambear.io`;
-the bare `teambear.io:443` refuses connections). The live site is a client-rendered
-TanStack Router app; this repo reproduces its server-rendered output as a static Astro
-page. When asked to match the live site, scrape its SSR HTML (`curl https://www.teambear.io/`)
-and the compiled stylesheet rather than trusting a rendered screenshot.
+The official TeamBear marketing site: a single-page static site built with Astro,
+deployed at https://teambear.io/. It is the canonical and only TeamBear site.
 
-All copy is in Polish and must be reproduced verbatim from the source. Do not use em-dashes
+All copy is in Polish. Keep it verbatim unless asked to change it. Do not use em-dashes
 (`-`/`-`); use a plain hyphen.
 
 ## Architecture
@@ -54,16 +50,14 @@ All copy is in Polish and must be reproduced verbatim from the source. Do not us
   `<html class="no-js">` and the head script removes it, so content stays visible without
   JS.
 - Static assets (logo, favicon, `portfolio-*.png`) live in `public/` and are referenced by
-  root-absolute paths. The portfolio images were originally hosted on Appwrite Cloud and
-  copied locally so the site is self-contained.
+  root-absolute paths, so the site is fully self-contained.
 - Portfolio data is split by concern: `src/projects.ts` holds language-independent
   metadata (`slug`, `image` card thumbnail, `images` carousel gallery, `tags`);
   `src/i18n.ts` holds the localized `title`, `desc`, and `highlights`. The detail page
   renders the gallery via `src/components/Carousel.astro` (self-contained vanilla-JS
   slider; its `<script>` auto-inits every `[data-carousel]`). The listing and `[slug]` page join the two **by array index**, so the
   order of `projects` in `projects.ts` must stay in sync with
-  `content.<lang>.portfolio.projects`. The live site's detail pages are dynamic/auth-gated
-  with no scrapeable content, so these pages are an original design built from that data.
+  `content.<lang>.portfolio.projects`.
 - Gallery image folders under `public/portfolio/` do **not** all match their slug:
   `anodizing` → `anoding/`, `fleet` → `tet/` (the other two match). The mapping lives
   explicitly in each project's `images` array in `src/projects.ts`.

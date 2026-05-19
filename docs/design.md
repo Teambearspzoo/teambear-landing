@@ -15,7 +15,7 @@ zarówno kodu, jak i copy.
 - **Font**: `Instrument Sans` (Google Fonts, wagi 400/500/600/700), ładowany w
   `Layout.astro`. `font-family:'Instrument Sans', sans-serif` ustawiane też
   inline na głównym kontenerze strony.
-- **Język**: całe copy po polsku, reprodukowane wiernie ze źródła. System i18n
+- **Język**: całe copy po polsku. System i18n
   (`src/i18n.ts` + przełącznik w `Layout.astro`) obsługuje PL/EN przez atrybuty
   `data-i18n="<dotted.path>"`; strony jednojęzyczne (np. `/picking`) mogą
   renderować copy bezpośrednio bez `data-i18n`.
@@ -94,8 +94,7 @@ duration-300`. Karty wypełniające równą wysokość: `h-full`.
 Wyłącznie **inline SVG w stylu lucide** (`stroke="currentColor"`,
 `stroke-width="2"`, `stroke-linecap/linejoin="round"`, `viewBox="0 0 24 24"`,
 `aria-hidden="true"`), zwykle `w-5 h-5` / `w-6 h-6 text-[#FF5A2D]`.
-**Nie używaj emoji** - nawet jeśli źródłowy scenariusz je zawiera, mapuj je na
-odpowiedniki SVG.
+**Nie używaj emoji** - mapuj je na odpowiedniki SVG.
 
 ### Przyciski / CTA
 
