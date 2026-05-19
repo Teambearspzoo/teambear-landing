@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  :root { --o: #FF5A2D; }
+  html, body { width: 210mm; height: 297mm; }
+  body {
+    font-family: 'Instrument Sans', -apple-system, system-ui, sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 8.6px;
+    line-height: 1.45;
+    padding: 11mm 12mm 9mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .eyebrow { color: var(--o); font-size: 7.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+  .muted { color: rgba(255,255,255,0.4); }
+  .o { color: var(--o); }
+
+  /* Header */
+  header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 9px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  header img { height: 20px; }
+  header .tag { color: var(--o); font-size: 7.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* Hero */
+  .hero { padding: 13px 0 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .hero h1 { font-size: 23px; font-weight: 700; line-height: 1.08; letter-spacing: -0.01em; margin: 6px 0 7px; }
+  .hero .lead { color: rgba(255,255,255,0.6); font-size: 9.5px; max-width: 135mm; line-height: 1.5; }
+  .chips { display: flex; gap: 7px; margin-top: 11px; }
+  .chip { border: 1px solid rgba(255,90,45,0.3); background: rgba(255,90,45,0.05); color: rgba(255,255,255,0.85);
+          border-radius: 999px; padding: 4px 11px; font-size: 8px; font-weight: 500; }
+  .chip b { color: var(--o); font-weight: 600; }
+
+  /* Body grid */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 13px 0; flex: 1; }
+  .col { display: flex; flex-direction: column; gap: 13px; }
+  .block .h { display: flex; align-items: baseline; gap: 7px; margin-bottom: 7px; }
+  .block .h .n { color: rgba(255,255,255,0.22); font-size: 7.5px; font-weight: 700; letter-spacing: 0.2em; }
+  .block .h .t { font-size: 11px; font-weight: 700; }
+
+  ul.tight { list-style: none; }
+  ul.tight li { position: relative; padding-left: 13px; margin-bottom: 4.5px; color: rgba(255,255,255,0.62); line-height: 1.4; }
+  ul.tight li::before { content: ''; position: absolute; left: 0; top: 4.5px; width: 5px; height: 5px; border-radius: 2px; background: var(--o); }
+  ul.tight li b { color: #fff; font-weight: 600; }
+
+  .offer-item { margin-bottom: 6px; }
+  .offer-item .t { color: #fff; font-weight: 600; font-size: 9px; }
+  .offer-item .d { color: rgba(255,255,255,0.5); line-height: 1.38; }
+
+  .steps { list-style: none; }
+  .steps li { display: flex; gap: 8px; margin-bottom: 5px; }
+  .steps li .s { flex-shrink: 0; width: 14px; height: 14px; border-radius: 4px; background: rgba(255,90,45,0.12);
+                 border: 1px solid rgba(255,90,45,0.3); color: var(--o); font-size: 7px; font-weight: 700;
+                 display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .steps li .x .m { color: rgba(255,90,45,0.75); font-size: 7px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  .steps li .x .ti { color: #fff; font-weight: 600; font-size: 9px; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .panel { border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 9px; }
+  .panel.go { border-color: rgba(255,90,45,0.25); background: rgba(255,90,45,0.04); }
+  .panel .ph { font-weight: 700; font-size: 8.5px; margin-bottom: 5px; }
+  .panel ul { list-style: none; }
+  .panel li { position: relative; padding-left: 11px; margin-bottom: 3px; color: rgba(255,255,255,0.6); line-height: 1.35; }
+  .panel.go li::before { content: '+'; position: absolute; left: 0; color: var(--o); font-weight: 700; }
+  .panel.no li::before { content: '×'; position: absolute; left: 0; color: rgba(255,255,255,0.35); font-weight: 700; }
+
+  /* Metrics */
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+  .metric { text-align: left; }
+  .metric .big { font-size: 22px; font-weight: 700; color: var(--o); letter-spacing: -0.02em; }
+  .metric .big span { font-size: 9px; color: rgba(255,255,255,0.4); font-weight: 500; }
+  .metric .d { color: rgba(255,255,255,0.5); font-size: 7.5px; line-height: 1.3; margin-top: 2px; }
+
+  /* Footer */
+  footer { display: grid; grid-template-columns: 1.05fr 1fr 1.25fr; gap: 14px; padding-top: 11px; border-top: 1px solid rgba(255,255,255,0.08); }
+  footer .lbl { color: var(--o); font-size: 7px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 5px; }
+  footer .price { font-size: 9px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+  footer .price b { color: #fff; }
+  .person { display: flex; align-items: center; gap: 8px; }
+  .person .av { width: 26px; height: 26px; border-radius: 999px; background: rgba(255,90,45,0.15);
+                border: 1px solid rgba(255,90,45,0.3); color: var(--o); font-weight: 700; font-size: 9px;
+                display: flex; align-items: center; justify-content: center; }
+  .person .nm { font-weight: 600; font-size: 9.5px; }
+  .person .rl { color: rgba(255,255,255,0.4); font-size: 7.5px; }
+  .contact-lines { margin-top: 5px; color: rgba(255,255,255,0.65); font-size: 8.5px; line-height: 1.65; }
+  .cta { display: inline-block; background: var(--o); color: #fff; font-weight: 600; font-size: 9px;
+         padding: 8px 13px; border-radius: 7px; text-decoration: none; }
+  .cta-sub { color: rgba(255,255,255,0.4); font-size: 7.5px; margin-top: 5px; }
+</style>
+</head>
+<body>
+
+  <header>
+    <img src="data:image/png;base64,__LOGO__" alt="TeamBear" />
+    <span class="tag">// Picking dla firm handlowych</span>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">System obsługi zamówień z pickingiem</span>
+    <h1>Twoja sprzedaż rośnie.<br /><span class="muted">Magazyn nie nadąża.</span></h1>
+    <p class="lead">Wdrażamy system obsługi zamówień z kolektorami dla rosnących polskich firm handlowych. Picking po zoptymalizowanej ścieżce, automatyczne WZ-tki w Twoim ERP, integracja z Twoim sklepem.</p>
+    <div class="chips">
+      <span class="chip"><b>Wdrożenie w 3 miesiące</b></span>
+      <span class="chip"><b>On-prem</b> na Twoim serwerze</span>
+      <span class="chip"><b>Kolektory</b> w pakiecie</span>
+      <span class="chip">Subiekt · Comarch · WooCommerce</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <div class="col">
+      <div class="block">
+        <div class="h"><span class="n">01</span><span class="t">Problem, który znasz</span></div>
+        <ul class="tight">
+          <li><b>Zamówienia drukowane na kartce</b> - bieganie po magazynie w przypadkowej kolejności.</li>
+          <li><b>Picking trwa godzinami</b> zamiast minutami - towar leży inaczej niż klient zamówił.</li>
+          <li><b>Biuro przepisuje WZ-tki ręcznie</b> do Subiekta / Comarcha pozycja po pozycji.</li>
+          <li><b>Reklamacji przybywa</b> - zła pozycja, zła ilość, pomyłka w sezonie.</li>
+          <li><b>Magazyn jest wąskim gardłem</b> - sprzedaż mogłaby rosnąć szybciej.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="h"><span class="n">02</span><span class="t">Stan docelowy</span></div>
+        <p style="color:rgba(255,255,255,0.6);line-height:1.45;">Magazynier wybiera zamówienie na kolektorze, idzie po zoptymalizowanej ścieżce, skanuje i wpisuje ilość. Jedno kliknięcie - WZ / faktura ląduje w Twoim ERP. Zamówienia ze sklepu spływają same. <b class="o">Zero kartek, przepisywania i biegania w kółko.</b></p>
+      </div>
+
+      <div class="block">
+        <div class="h"><span class="n">07</span><span class="t">Dla kogo</span></div>
+        <div class="two">
+          <div class="panel go">
+            <div class="ph">To dla Ciebie, jeśli...</div>
+            <ul>
+              <li>Masz własny magazyn</li>
+              <li>Obracasz ponad 100 SKU</li>
+              <li>Min. 10 zamówień dziennie</li>
+              <li>Zamówienia wielopozycyjne</li>
+              <li>Masz ERP do spięcia</li>
+            </ul>
+          </div>
+          <div class="panel no">
+            <div class="ph">To NIE dla Ciebie, jeśli...</div>
+            <ul>
+              <li>&lt; 10 zamówień dziennie</li>
+              <li>Korzystasz z 3PL / fulfillmentu</li>
+              <li>Szukasz pełnego WMS-u</li>
+              <li>Chcesz gotowca SaaS za 200 zł/mc</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="block">
+        <div class="h"><span class="n">03</span><span class="t">Co dostajesz w pakiecie</span></div>
+        <div class="offer-item"><span class="t">Aplikacja na kolektor</span> <span class="d">- picking, statusy, przypisania. Cztery ekrany, magazynier ogarnia w jeden dzień.</span></div>
+        <div class="offer-item"><span class="t">Portal webowy</span> <span class="d">- zarządzanie zamówieniami i produktami, konfiguracja ścieżki, role.</span></div>
+        <div class="offer-item"><span class="t">Kolektory w pakiecie</span> <span class="d">- gotowe do pracy. Rozpakowujesz, ładujesz, picking startuje.</span></div>
+        <div class="offer-item"><span class="t">Integracja</span> <span class="d">- z Twoim ERP / księgowością i sklepem e-commerce.</span></div>
+      </div>
+
+      <div class="block">
+        <div class="h"><span class="n">04</span><span class="t">Wdrożenie · ~3 miesiące do go-live</span></div>
+        <ul class="steps">
+          <li><span class="s">01</span><span class="x"><span class="m">40 min · online</span><div class="ti">Bezpłatna analiza procesu</div></span></li>
+          <li><span class="s">02</span><span class="x"><span class="m">3 dni · on-site</span><div class="ti">Wizyta u Ciebie - mapowanie procesu i ścieżki</div></span></li>
+          <li><span class="s">03</span><span class="x"><span class="m">Tydzień 2-6</span><div class="ti">Konfiguracja portalu i aplikacji</div></span></li>
+          <li><span class="s">04</span><span class="x"><span class="m">Tydzień 4-9</span><div class="ti">Integracje z ERP i sklepem</div></span></li>
+          <li><span class="s">05</span><span class="x"><span class="m">Tydzień 10-11</span><div class="ti">Dostawa kolektorów + szkolenie + go-live</div></span></li>
+          <li><span class="s">06</span><span class="x"><span class="m">Po go-live</span><div class="ti">3 miesiące supportu w cenie</div></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="big">2×<span> szybciej</span></div><div class="d">Skrócony czas obsługi zamówienia</div></div>
+    <div class="metric"><div class="big">3<span> mies.</span></div><div class="d">Od umowy do go-live</div></div>
+    <div class="metric"><div class="big">25 h<span> /tydz.</span></div><div class="d">Mniej ręcznego wbijania WZ-tek</div></div>
+    <div class="metric"><div class="big">35%<span> mniej</span></div><div class="d">Reklamacji z błędów magazynu</div></div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="lbl">Cennik orientacyjny</div>
+      <div class="price"><b>80 000 - 150 000 PLN</b> netto wdrożenie<br />(jednorazowo, hardware w cenie)<br /><b>2 000 - 5 000 PLN</b>/mc maintenance</div>
+    </div>
+    <div>
+      <div class="lbl">Kontakt</div>
+      <div class="person">
+        <span class="av">PZ</span>
+        <span><span class="nm">Piotr Zaworski</span><br /><span class="rl">Founder, TeamBear</span></span>
+      </div>
+      <div class="contact-lines">piotr.zaworski@teambear.io<br />+48 537 341 796</div>
+    </div>
+    <div>
+      <div class="lbl">Następny krok</div>
+      <a class="cta" href="mailto:piotr.zaworski@teambear.io">Umów bezpłatną analizę procesu →</a>
+      <div class="cta-sub">40 minut · online · bez prezentacji · bez zobowiązań</div>
+    </div>
+  </footer>
+
+</body>
+</html>

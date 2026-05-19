@@ -1,0 +1,72 @@
+---
+import Icon from '../Icon.astro';
+import { content } from '../../i18n';
+import { mailtoMain } from './links';
+
+const t = content.pl.picking;
+const flowMeta = [
+  { tone: 'accent', icon: 'smartphone' },
+  { tone: 'muted', icon: 'scanLine' },
+  { tone: 'muted', icon: 'monitor' },
+  { tone: 'accent', icon: 'link' },
+];
+---
+
+<!-- SEKCJA 02: STAN DOCELOWY -->
+<section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+  <div class="absolute top-1/2 -translate-y-1/2 left-[5%] w-[min(500px,100vw)] h-[min(500px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-16 items-center">
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <div class="reveal">
+          <span data-i18n="picking.target.eyebrow" class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">{t.target.eyebrow}</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-8">
+            <span data-i18n="picking.target.title1">{t.target.title1}</span><br /><span data-i18n="picking.target.title2" class="text-white/40">{t.target.title2}</span>
+          </h2>
+        </div>
+        <div class="reveal space-y-6 text-white/60 text-lg leading-relaxed" style="transition-delay:100ms">
+          <p data-i18n="picking.target.p1">{t.target.p1}</p>
+          <p data-i18n="picking.target.p2">{t.target.p2}</p>
+        </div>
+
+        <div class="reveal mt-12" style="transition-delay:200ms">
+          <div class="grid grid-cols-3 gap-4 md:gap-8 mb-10">
+            {
+              ['z1', 'z2', 'z3'].map((zk) => (
+                <div class="p-5 md:p-6 rounded-xl border border-[#FF5A2D]/15 bg-[#FF5A2D]/[0.03]">
+                  <div data-i18n="picking.target.zero" class="text-[#FF5A2D] text-3xl md:text-4xl font-bold tracking-tight">{t.target.zero}</div>
+                  <div data-i18n={`picking.target.${zk}`} class="text-white/50 text-sm mt-1">{t.target[zk as 'z1' | 'z2' | 'z3']}</div>
+                </div>
+              ))
+            }
+          </div>
+          <a href={mailtoMain} class="group inline-flex items-center gap-2 text-[#FF5A2D] font-medium transition-all duration-300">
+            <span data-i18n="picking.target.cta">{t.target.cta}</span>
+            <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 order-1 lg:order-2">
+        <div class="reveal relative" style="transition-delay:150ms">
+          <div class="absolute inset-0 -m-4 rounded-3xl bg-gradient-to-br from-[#FF5A2D]/15 to-[#FF5A2D]/0 blur-2xl pointer-events-none"></div>
+          <div class="relative space-y-3">
+            {
+              t.target.flow.map((row, i) => (
+                <div class={`flex items-center gap-4 p-4 rounded-xl border transition-all ${flowMeta[i].tone === 'accent' ? 'bg-[#FF5A2D]/[0.06] border-[#FF5A2D]/25' : 'bg-white/[0.02] border-white/5'}`}>
+                  <div class={`shrink-0 w-11 h-11 rounded-lg flex items-center justify-center ${flowMeta[i].tone === 'accent' ? 'bg-[#FF5A2D]/15' : 'bg-white/5'}`}>
+                    <Icon name={flowMeta[i].icon} class={`w-5 h-5 ${flowMeta[i].tone === 'accent' ? 'text-[#FF5A2D]' : 'text-white/50'}`} />
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div data-i18n={`picking.target.flow.${i}.title`} class="text-white font-medium text-sm">{row.title}</div>
+                    <div data-i18n={`picking.target.flow.${i}.body`} class="text-white/45 text-xs mt-0.5 leading-snug">{row.body}</div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

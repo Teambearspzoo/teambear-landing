@@ -1,0 +1,35 @@
+---
+import Icon from '../Icon.astro';
+import { content } from '../../i18n';
+
+const t = content.pl.picking;
+const uspIcons = ['target', 'package', 'shield'];
+---
+
+<!-- SEKCJA 05: DLACZEGO TO DZIAŁA -->
+<section class="bg-[#141414] py-32 relative overflow-hidden">
+  <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent hidden lg:block"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <div class="reveal max-w-3xl mb-20">
+      <span data-i18n="picking.usp.eyebrow" class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">{t.usp.eyebrow}</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+        <span data-i18n="picking.usp.title1">{t.usp.title1}</span><br /><span data-i18n="picking.usp.title2" class="text-white/40">{t.usp.title2}</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {
+        t.usp.items.map((u, i) => (
+          <div class="reveal group p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500" style={`transition-delay:${i * 100}ms`}>
+            <div class="w-14 h-14 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center mb-8 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+              <Icon name={uspIcons[i]} class="w-6 h-6 text-[#FF5A2D]" />
+            </div>
+            <div class="text-white/20 text-sm font-medium mb-3">0{i + 1}</div>
+            <h3 data-i18n={`picking.usp.items.${i}.title`} class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{u.title}</h3>
+            <p data-i18n={`picking.usp.items.${i}.body`} class="text-white/50 leading-relaxed">{u.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

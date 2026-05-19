@@ -1,0 +1,45 @@
+---
+import Icon from '../Icon.astro';
+import { content } from '../../i18n';
+
+const t = content.pl.picking;
+const tf = content.pl.footer;
+---
+
+<!-- STOPKA -->
+<footer class="bg-[#1a1a1a] border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <img src="/teambear-logo.png" alt="TeamBear" class="h-8 mb-6" />
+        <p data-i18n="picking.footer.desc" class="text-white/50 text-sm leading-relaxed max-w-sm">
+          {t.footer.desc}
+        </p>
+      </div>
+      <div class="lg:col-span-3">
+        <h4 data-i18n="picking.footer.contact" class="text-white text-sm font-semibold mb-4">{t.footer.contact}</h4>
+        <div class="space-y-3">
+          <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300 text-sm">
+            <Icon name="mail" class="w-4 h-4" />
+            <span>piotr.zaworski@teambear.io</span>
+          </a>
+          <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300 text-sm">
+            <Icon name="phone" class="w-4 h-4" />
+            <span>+48 537 341 796</span>
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-4">
+        <h4 class="text-white text-sm font-semibold mb-4">TeamBear Sp. z o.o.</h4>
+        <p class="text-white/40 text-sm leading-relaxed">
+          NIP: 113-301-95-13<br />
+          ul. Zwycięzców 19/6, 03-936 Warszawa
+        </p>
+      </div>
+    </div>
+    <div class="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p data-i18n="footer.copyright" class="text-white/40 text-sm">{tf.copyright}</p>
+      <p data-i18n="footer.tagline" class="text-white/30 text-xs tracking-[0.2em] uppercase">{tf.tagline}</p>
+    </div>
+  </div>
+</footer>

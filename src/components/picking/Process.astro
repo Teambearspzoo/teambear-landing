@@ -1,0 +1,53 @@
+---
+import Icon from '../Icon.astro';
+import { content } from '../../i18n';
+
+const t = content.pl.picking;
+const stepIcons = ['messageSquare', 'mapPin', 'settings', 'link', 'truck', 'headset'];
+---
+
+<!-- SEKCJA 04: WDROŻENIE -->
+<section id="proces" class="bg-[#1a1a1a] py-32 relative overflow-hidden scroll-mt-[136px]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+      <div class="max-w-2xl">
+        <span data-i18n="picking.process.eyebrow" class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">{t.process.eyebrow}</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+          <span data-i18n="picking.process.title1">{t.process.title1}</span><br /><span data-i18n="picking.process.title2" class="text-white/40">{t.process.title2}</span>
+        </h2>
+      </div>
+      <div class="shrink-0 inline-flex items-center gap-3 px-5 py-3 rounded-full border border-[#FF5A2D]/25 bg-[#FF5A2D]/[0.06]">
+        <Icon name="clock" class="w-4 h-4 text-[#FF5A2D]" />
+        <span data-i18n="picking.process.badge" class="text-white/80 text-sm">{t.process.badge}</span>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="hidden lg:block absolute left-0 right-0 top-7 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+      <div class="grid lg:grid-cols-6 gap-10 lg:gap-6">
+        {
+          t.process.steps.map((s, i) => (
+            <div class="reveal relative" style={`transition-delay:${i * 60}ms`}>
+              <div class="flex lg:block items-start gap-5">
+                <div class="relative shrink-0">
+                  <div class="w-14 h-14 rounded-xl bg-[#FF5A2D]/10 border border-[#FF5A2D]/20 flex items-center justify-center">
+                    <Icon name={stepIcons[i]} class="w-5 h-5 text-[#FF5A2D]" />
+                  </div>
+                  <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#1a1a1a] border border-white/10 text-white/70 text-[10px] font-bold flex items-center justify-center">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <div class="flex-1 min-w-0 lg:mt-6">
+                  <div data-i18n={`picking.process.steps.${i}.meta`} class="text-[10px] uppercase tracking-[0.2em] text-[#FF5A2D]/70 mb-2">{s.meta}</div>
+                  <h3 data-i18n={`picking.process.steps.${i}.title`} class="text-base lg:text-lg font-semibold text-white mb-2 leading-snug">{s.title}</h3>
+                  <p data-i18n={`picking.process.steps.${i}.body`} class="text-white/50 text-sm leading-relaxed">{s.body}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

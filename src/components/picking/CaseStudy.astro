@@ -1,0 +1,67 @@
+---
+import Icon from '../Icon.astro';
+import { content } from '../../i18n';
+import { mailtoMain } from './links';
+
+const t = content.pl.picking;
+const metricPlaceholder = [false, false, false, false];
+---
+
+<!-- SEKCJA 06: CASE STUDY -->
+<section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+  <div class="absolute bottom-0 right-0 w-[min(700px,100vw)] h-[min(700px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <div class="reveal lg:sticky lg:top-32">
+          <span data-i18n="picking.caseStudy.eyebrow" class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">{t.caseStudy.eyebrow}</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            <span data-i18n="picking.caseStudy.title1">{t.caseStudy.title1}</span><br /><span data-i18n="picking.caseStudy.title2" class="text-white/40">{t.caseStudy.title2}</span>
+          </h2>
+          <p data-i18n="picking.caseStudy.intro" class="text-white/50 text-lg leading-relaxed mb-6">
+            {t.caseStudy.intro}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {
+              t.caseStudy.tags.map((tag, i) => (
+                <span data-i18n={`picking.caseStudy.tags.${i}`} class="px-3 py-1 text-xs font-medium text-white/50 bg-white/5 rounded-full border border-white/10">{tag}</span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+          {
+            t.caseStudy.metrics.map((m, i) => (
+              <div class={`reveal p-8 rounded-2xl border transition-colors ${metricPlaceholder[i] ? 'bg-white/[0.01] border-white/5 border-dashed' : 'bg-white/[0.02] border-white/5'}`} style={`transition-delay:${i * 80}ms`}>
+                <div class="flex items-baseline gap-2 mb-3">
+                  <span data-i18n={`picking.caseStudy.metrics.${i}.big`} class={`text-5xl md:text-6xl font-bold tracking-tight ${metricPlaceholder[i] ? 'text-white/30' : 'text-[#FF5A2D]'}`}>{m.big}</span>
+                  <span data-i18n={`picking.caseStudy.metrics.${i}.unit`} class="text-white/40 text-base">{m.unit}</span>
+                </div>
+                <p data-i18n={`picking.caseStudy.metrics.${i}.body`} class="text-white/50 text-sm leading-relaxed">{m.body}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="reveal p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5 mb-8">
+          <p data-i18n="picking.caseStudy.quote" class="text-white/70 text-lg leading-relaxed">
+            {t.caseStudy.quote}
+          </p>
+        </div>
+
+        <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
+          <a href={mailtoMain} class="group inline-flex items-center gap-2 text-[#FF5A2D] font-medium transition-all duration-300">
+            <span data-i18n="picking.caseStudy.cta">{t.caseStudy.cta}</span>
+            <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+          <p data-i18n="picking.caseStudy.note" class="text-white/30 text-xs leading-relaxed max-w-sm">
+            {t.caseStudy.note}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

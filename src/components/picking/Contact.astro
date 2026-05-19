@@ -1,0 +1,87 @@
+---
+import Icon from '../Icon.astro';
+import { content } from '../../i18n';
+import { mailtoMain } from './links';
+
+const t = content.pl.picking;
+---
+
+<!-- SEKCJA 09: KONTAKT -->
+<section id="kontakt" class="bg-[#141414] py-32 relative overflow-hidden scroll-mt-[136px]">
+  <div
+    class="absolute inset-0 opacity-[0.025]"
+    style="background-image:linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);background-size:60px 60px"
+  >
+  </div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[min(900px,100vw)] h-[min(500px,60vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
+      <div class="lg:col-span-6">
+        <div class="reveal">
+          <span data-i18n="picking.contact.eyebrow" class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">{t.contact.eyebrow}</span>
+          <h2 class="text-4xl md:text-6xl font-bold text-white leading-[1.05] tracking-tight mb-8">
+            <span data-i18n="picking.contact.title1">{t.contact.title1}</span><br />
+            <span class="text-white/40"><span data-i18n="picking.contact.title2a">{t.contact.title2a}</span><br /><span data-i18n="picking.contact.title2b">{t.contact.title2b}</span></span>
+          </h2>
+          <p data-i18n="picking.contact.lead" class="text-white/60 text-lg leading-relaxed max-w-md mb-10">
+            {t.contact.lead}
+          </p>
+
+          <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 mb-8">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-12 h-12 rounded-full bg-[#FF5A2D]/15 border border-[#FF5A2D]/25 flex items-center justify-center text-[#FF5A2D] font-bold">PZ</div>
+              <div>
+                <div class="text-white font-medium">Piotr Zaworski</div>
+                <div data-i18n="picking.contact.role" class="text-white/40 text-sm">{t.contact.role}</div>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors text-sm">
+                <Icon name="mail" class="w-4 h-4" /> <span>piotr.zaworski@teambear.io</span>
+              </a>
+              <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors text-sm">
+                <Icon name="phone" class="w-4 h-4" /> <span>+48 537 341 796</span>
+              </a>
+            </div>
+          </div>
+
+          <p data-i18n="picking.contact.note" class="text-white/40 text-sm">
+            {t.contact.note}
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6">
+        <div class="reveal p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5" style="transition-delay:120ms">
+          <div class="flex items-center gap-3 mb-2">
+            <Icon name="calendar" class="w-5 h-5 text-[#FF5A2D]" />
+            <h3 data-i18n="picking.contact.panelTitle" class="text-xl font-semibold text-white">{t.contact.panelTitle}</h3>
+          </div>
+          <p data-i18n="picking.contact.panelSub" class="text-white/40 text-sm mb-8">{t.contact.panelSub}</p>
+
+          <ul class="space-y-4 mb-8">
+            {
+              t.contact.points.map((p, i) => (
+                <li class="flex items-start gap-3">
+                  <span class="shrink-0 mt-0.5 w-6 h-6 rounded-full bg-[#FF5A2D]/15 flex items-center justify-center">
+                    <Icon name="check" class="w-3.5 h-3.5 text-[#FF5A2D]" strokeWidth={2.6} />
+                  </span>
+                  <span data-i18n={`picking.contact.points.${i}`} class="text-white/70 leading-relaxed">{p}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <a href={mailtoMain} class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:-translate-y-[2px]">
+            <span data-i18n="picking.contact.button">{t.contact.button}</span>
+            <Icon name="arrowRight" class="w-4 h-4" />
+          </a>
+          <p data-i18n="picking.contact.micro" class="text-white/30 text-xs text-center mt-4">
+            {t.contact.micro}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
