@@ -21,6 +21,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Build for the custom domain: site https://teambear.io, base '/'.
+      # (See astro.config.mjs.) Pair this with the public/CNAME file.
+      SITE_DOMAIN: teambear.io
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
