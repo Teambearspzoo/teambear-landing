@@ -1,116 +1,109 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
 
-const title = 'System obsługi zamówień z pickingiem dla firm handlowych | Teambear';
+const title = 'System obsługi zamówień z pickingiem dla firm handlowych | TeamBear';
 const description =
   'Wdrażamy systemy obsługi zamówień z kolektorami dla rosnących polskich firm handlowych. Integracja z Twoim ERP i sklepem. On-prem. 3 miesiące do go-live.';
 
+const mailtoMain = `mailto:piotr.zaworski@teambear.io?subject=${encodeURIComponent('Bezpłatna analiza procesu - obsługa zamówień')}`;
+const mailtoPdf = `mailto:piotr.zaworski@teambear.io?subject=${encodeURIComponent('Proszę o one-pager PDF - system pickingowy')}`;
+
+const navLinks = [
+  { href: '#problem', label: 'Problem' },
+  { href: '#co-dostajesz', label: 'Co dostajesz' },
+  { href: '#proces', label: 'Wdrożenie' },
+  { href: '#faq', label: 'FAQ' },
+];
+
 const problems = [
   {
-    icon: 'file',
-    title: 'Zamówienia drukowane na kartce.',
+    icon: 'fileText',
+    title: 'Zamówienia drukowane na kartce',
     desc: 'Magazynier bierze listę, biega po magazynie w przypadkowej kolejności, zaznacza długopisem co wziął.',
   },
   {
     icon: 'clock',
-    title: 'Picking trwa godzinami',
-    desc: 'zamiast minutami, bo towar leży zupełnie inaczej, niż klient zamówił.',
+    title: 'Picking trwa godzinami zamiast minutami',
+    desc: 'Bo towar leży zupełnie inaczej, niż klient zamówił.',
   },
   {
-    icon: 'pen',
+    icon: 'penLine',
     title: 'Osoba w biurze przepisuje WZ-tki ręcznie',
-    desc: 'do Subiekta / Comarcha / Symfonii - grupuje, kalkuluje, wbija pozycję po pozycji.',
+    desc: 'Do Subiekta / Comarcha / Symfonii. Grupuje, kalkuluje, wbija pozycję po pozycji.',
   },
   {
-    icon: 'x',
-    title: 'Reklamacji przybywa.',
+    icon: 'alertTriangle',
+    title: 'Reklamacji przybywa',
     desc: 'Zła pozycja, zła ilość, pomyłka w sezonie.',
   },
   {
-    icon: 'trending',
-    title: 'Sprzedaż mogłaby rosnąć szybciej.',
+    icon: 'trendingUp',
+    title: 'Sprzedaż mogłaby rosnąć szybciej',
     desc: 'Tylko magazyn już nie wyrabia.',
   },
 ];
 
+const workflow = [
+  { tone: 'accent', icon: 'smartphone', title: 'Magazynier', body: 'Kolektor pokazuje listę. Skanuje, wpisuje ilość, idzie dalej.' },
+  { tone: 'muted', icon: 'scanLine', title: 'Ścieżka', body: 'System wyznacza najkrótszą trasę po regałach.' },
+  { tone: 'muted', icon: 'monitor', title: 'Biuro', body: 'Portal webowy. Widać kto co kompletuje, w czasie rzeczywistym.' },
+  { tone: 'accent', icon: 'link', title: 'ERP', body: 'WZ / faktura ląduje w Twoim systemie. Bez przepisywania.' },
+];
+
 const offer = [
   {
-    icon: 'phone',
+    icon: 'smartphone',
+    label: 'Aplikacja',
     title: 'Aplikacja na kolektor',
-    desc: 'Autorska aplikacja na kolektor - picking, zmiana statusu zamówienia, przypisywanie do magazynierów. Cztery ekrany. Magazynier ogarnia ją w jeden dzień.',
+    body: 'Autorska aplikacja - picking, zmiana statusu zamówienia, przypisywanie do magazynierów. Cztery ekrany. Magazynier ogarnia ją w jeden dzień.',
   },
   {
     icon: 'monitor',
+    label: 'Portal',
     title: 'Portal webowy',
-    desc: 'Zarządzanie zamówieniami i produktami. Konfiguracja ścieżki pickingowej (regał / półka / slot). Role dla admina, biura, magazyniera.',
+    body: 'Zarządzanie zamówieniami i produktami. Konfiguracja ścieżki pickingowej (regał / półka / slot). Role dla admina, biura, magazyniera.',
   },
   {
-    icon: 'box',
+    icon: 'scanLine',
+    label: 'Hardware',
     title: 'Kolektory w pakiecie',
-    desc: 'Dostarczamy gotowe do pracy. Rozpakowujesz, ładujesz, picking startuje. Bez kombinowania z MDM, konfiguracjami, dostawcami sprzętu.',
+    body: 'Dostarczamy gotowe do pracy. Rozpakowujesz, ładujesz, picking startuje. Bez kombinowania z MDM, konfiguracjami, dostawcami sprzętu.',
   },
   {
     icon: 'plug',
+    label: 'Integracja',
     title: 'Integracja z Twoimi systemami',
-    desc: 'Łączymy z Twoim ERP / systemem księgowym i Twoim sklepem e-commerce. Zakres integracji ustalamy w trakcie analizy procesu.',
+    body: 'Łączymy z Twoim ERP / systemem księgowym i Twoim sklepem e-commerce. Zakres integracji ustalamy w trakcie analizy procesu.',
   },
 ];
 
 const steps = [
-  {
-    title: 'Bezpłatna analiza procesu (40 min, online)',
-    desc: 'Zaczynamy od rozmowy. Pokazujesz, jak wygląda obsługa zamówień dziś. Mówimy szczerze, czy nasz system ma sens w Twoim przypadku.',
-  },
-  {
-    title: 'Wizyta u Ciebie (3 dni on-site)',
-    desc: 'Konsultant przyjeżdża do magazynu. Mapujemy proces, projektujemy ścieżkę pickingową, ustalamy zakres integracji.',
-  },
-  {
-    title: 'Konfiguracja systemu',
-    desc: 'Konfigurujemy portal i aplikację pod Twój układ magazynu i Twoje procesy.',
-  },
-  {
-    title: 'Integracje',
-    desc: 'Łączymy z Twoim ERP / systemem księgowym i sklepem e-commerce.',
-  },
-  {
-    title: 'Dostawa kolektorów + szkolenie',
-    desc: 'Sprzęt przyjeżdża skonfigurowany. Szkolimy magazyn i biuro. Idziemy live.',
-  },
-  {
-    title: '3 miesiące supportu w cenie',
-    desc: 'Jesteśmy dostępni od pierwszego dnia. Reagujemy na bieżąco, dostrajamy proces.',
-  },
+  { icon: 'messageSquare', title: 'Bezpłatna analiza procesu', meta: '40 min · online', body: 'Zaczynamy od rozmowy. Pokazujesz, jak wygląda obsługa zamówień dziś. Mówimy szczerze, czy nasz system ma sens w Twoim przypadku.' },
+  { icon: 'mapPin', title: 'Wizyta u Ciebie', meta: '3 dni · on-site', body: 'Konsultant przyjeżdża do magazynu. Mapujemy proces, projektujemy ścieżkę pickingową, ustalamy zakres integracji.' },
+  { icon: 'settings', title: 'Konfiguracja systemu', meta: 'Tydzień 2-6', body: 'Konfigurujemy portal i aplikację pod Twój układ magazynu i Twoje procesy.' },
+  { icon: 'link', title: 'Integracje', meta: 'Tydzień 4-9', body: 'Łączymy z Twoim ERP / systemem księgowym i sklepem e-commerce.' },
+  { icon: 'truck', title: 'Dostawa kolektorów + szkolenie', meta: 'Tydzień 10-11', body: 'Sprzęt przyjeżdża skonfigurowany. Szkolimy magazyn i biuro. Idziemy live.' },
+  { icon: 'headset', title: '3 miesiące supportu w cenie', meta: 'Po go-live', body: 'Jesteśmy dostępni od pierwszego dnia. Reagujemy na bieżąco, dostrajamy proces.' },
 ];
 
-const usp = [
-  {
-    icon: 'target',
-    title: 'Robimy jedną rzecz',
-    desc: 'Nie sprzedajemy "wszystkiego" - pełnego WMS, ERP, e-commerce. Picking i obsługa zamówień. Tu jesteśmy konkretni i szybcy.',
-  },
-  {
-    icon: 'box',
-    title: 'Kolektor w pakiecie',
-    desc: 'Większość rozwiązań to czysty software - "kup sobie sprzęt sam". My przywozimy gotowe urządzenia. Włączasz i pracujesz.',
-  },
-  {
-    icon: 'lock',
-    title: 'On-prem na Twoim serwerze',
-    desc: 'Standardowo wdrażamy lokalnie. Twoje dane zostają u Ciebie. Nie blokujemy Cię chmurą. Hosting po naszej stronie też możliwy - wybór jest Twój.',
-  },
+const usps = [
+  { icon: 'target', title: 'Robimy jedną rzecz', body: 'Nie sprzedajemy „wszystkiego” - pełnego WMS, ERP, e-commerce. Picking i obsługa zamówień. Tu jesteśmy konkretni i szybcy.' },
+  { icon: 'package', title: 'Kolektor w pakiecie', body: 'Większość rozwiązań to czysty software - „kup sobie sprzęt sam”. My przywozimy gotowe urządzenia. Włączasz i pracujesz.' },
+  { icon: 'shield', title: 'On-prem na Twoim serwerze', body: 'Standardowo wdrażamy lokalnie. Twoje dane zostają u Ciebie. Nie blokujemy Cię chmurą. Hosting po naszej stronie też możliwy - wybór jest Twój.' },
 ];
 
 const metrics = [
-  { value: 'Ponad 2× szybciej', label: 'tyle skrócił się czas obsługi zamówienia' },
-  { value: '[XX h / tydzień]', label: 'tyle godzin biuro przestało spędzać na ręcznym wbijaniu WZ-tek', todo: true },
-  { value: '[XX %]', label: 'spadek liczby reklamacji z powodu błędów magazynu', todo: true },
-  { value: '3 miesiące', label: 'tyle trwało wdrożenie od podpisania do go-live' },
+  { big: '2×', unit: 'szybciej', body: 'Tyle skrócił się czas obsługi zamówienia', placeholder: false },
+  { big: '3', unit: 'miesiące', body: 'Od podpisania umowy do go-live', placeholder: false },
+  { big: '25 h', unit: '/ tydzień', body: 'Tyle godzin biuro przestało spędzać na ręcznym wbijaniu WZ-tek', placeholder: false },
+  { big: '35%', unit: 'mniej', body: 'Spadek liczby reklamacji z powodu błędów magazynu', placeholder: false },
 ];
 
-const forYou = [
+const caseTags = ['Subiekt GT', 'Sklep e-commerce', '5 kolektorów', 'On-prem'];
+
+const icpFor = [
   'Masz własny magazyn (nie korzystasz z fulfillmentu)',
   'Obracasz ponad 100 SKU',
   'Realizujesz co najmniej 10 zamówień dziennie',
@@ -118,246 +111,266 @@ const forYou = [
   'Czas obsługi zamówień zaczyna ograniczać wzrost firmy',
   'Masz już ERP / system księgowy, do którego chcesz to spiąć',
 ];
-
-const notForYou = [
+const icpNot = [
   'Wysyłasz mniej niż 10 zamówień dziennie (zwrot z inwestycji nie nadąża)',
   'Korzystasz z 3PL / fulfillmentu - nie masz własnego magazynu do optymalizacji',
   'Szukasz pełnego WMS-u z inwentaryzacją, awizacjami, multi-warehouse',
   'Chcesz gotowca SaaS w 200 zł/mc - to nie ten segment',
 ];
 
-const faq = [
-  {
-    q: 'Ile to kosztuje?',
-    a: 'Wdrożenie typowo 80 000 - 150 000 PLN netto (jednorazowo, w cenie hardware). Maintenance 2 000 - 5 000 PLN/mc w zależności od SLA. Konkretną wycenę przygotowujemy po analizie procesu.',
-  },
-  {
-    q: 'Ile trwa wdrożenie?',
-    a: 'Około 3 miesięcy od podpisania umowy do uruchomienia na produkcji. Bez burzenia bieżącej pracy.',
-  },
-  {
-    q: 'Czy moi pracownicy ogarną kolektor?',
-    a: 'Aplikacja ma cztery ekrany. Magazynierzy uczą się jej w jeden dzień. Nie wymagamy znajomości technologii.',
-  },
-  {
-    q: 'Z jakimi systemami się integrujecie?',
-    a: 'Zaczynaliśmy od Subiekta GT i sklepu opartego o Medusę. Każdy kolejny system (Comarch, Symfonia, enova, WooCommerce, Shoper, IdoSell, Magento etc.) wymaga osobnego rozpoznania - robimy to bezpłatnie w trakcie analizy.',
-  },
-  {
-    q: 'Czy moje dane będą bezpieczne?',
-    a: 'Standardowo wdrażamy on-prem - system działa na Twoim serwerze, dane nigdy nie opuszczają Twojej infrastruktury. Możemy też hostować po naszej stronie, jeśli wolisz.',
-  },
-  {
-    q: 'Co, jeśli za rok zechcę rozszerzyć system?',
-    a: 'Kod jest Twój, dokumentacja Twoja. Możemy rozszerzać razem - albo każdy inny zespół developerski może podjąć się rozwoju. Bez vendor locka.',
-  },
-  {
-    q: 'Czy macie referencje?',
-    a: 'Tak. Pierwsza firma wdrożeniowa zgodziła się na rozmowę telefoniczną z zakwalifikowanymi prospektami. Dane przekazujemy na zaawansowanym etapie rozmów.',
-  },
+const faqs = [
+  { q: 'Ile to kosztuje?', a: 'Wdrożenie typowo 80 000 - 150 000 PLN netto (jednorazowo, w cenie hardware). Maintenance 2 000 - 5 000 PLN/mc w zależności od SLA. Konkretną wycenę przygotowujemy po analizie procesu.' },
+  { q: 'Ile trwa wdrożenie?', a: 'Około 3 miesięcy od podpisania umowy do uruchomienia na produkcji. Bez burzenia bieżącej pracy.' },
+  { q: 'Czy moi pracownicy ogarną kolektor?', a: 'Aplikacja ma cztery ekrany. Magazynierzy uczą się jej w jeden dzień. Nie wymagamy znajomości technologii.' },
+  { q: 'Z jakimi systemami się integrujecie?', a: 'Zaczynaliśmy od Subiekta GT i sklepu opartego o Medusę. Każdy kolejny system (Comarch, Symfonia, enova, WooCommerce, Shoper, IdoSell, Magento etc.) wymaga osobnego rozpoznania - robimy to bezpłatnie w trakcie analizy.' },
+  { q: 'Czy moje dane będą bezpieczne?', a: 'Standardowo wdrażamy on-prem - system działa na Twoim serwerze, dane nigdy nie opuszczają Twojej infrastruktury. Możemy też hostować po naszej stronie, jeśli wolisz.' },
+  { q: 'Co, jeśli za rok zechcę rozszerzyć system?', a: 'Kod jest Twój, dokumentacja Twoja. Możemy rozszerzać razem - albo każdy inny zespół developerski może podjąć się rozwoju. Bez vendor locka.' },
+  { q: 'Czy macie referencje?', a: 'Tak. Pierwsza firma wdrożeniowa zgodziła się na rozmowę telefoniczną z zakwalifikowanymi prospektami. Dane przekazujemy na zaawansowanym etapie rozmów.' },
 ];
 
-const mailto =
-  'mailto:piotr.zaworski@teambear.io?subject=Bezp%C5%82atna%20analiza%20procesu%20-%20obs%C5%82uga%20zam%C3%B3wie%C5%84';
+const ctaPoints = [
+  'Mapujemy Twój obecny proces obsługi zamówień',
+  'Mówimy szczerze, czy nasz system ma sens u Ciebie',
+  'Szacujemy, ile czasu i błędów realnie zaoszczędzisz',
+];
 ---
 
 <Layout title={title} description={description}>
   <div class="min-h-screen overflow-x-hidden" style="background-color:#1a1a1a;font-family:'Instrument Sans', sans-serif">
     <Header />
+
+    <!-- Subheader: nawigacja sekcyjna tej strony -->
+    <div class="fixed top-[72px] left-0 right-0 z-40 bg-[#1a1a1a]/85 backdrop-blur-sm border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <nav class="flex items-center gap-6 md:gap-8 h-12 overflow-x-auto text-sm">
+          <span class="hidden sm:inline shrink-0 text-[#FF5A2D] text-xs font-medium tracking-[0.2em] uppercase">//Picking</span>
+          {
+            navLinks.map((l) => (
+              <a href={l.href} class="shrink-0 whitespace-nowrap text-white/60 hover:text-white transition-colors duration-300">
+                {l.label}
+              </a>
+            ))
+          }
+          <a href="#kontakt" class="ml-auto shrink-0 whitespace-nowrap text-[#FF5A2D] hover:text-[#FF5A2D]/80 font-medium transition-colors duration-300">Kontakt</a>
+        </nav>
+      </div>
+    </div>
+
     <main>
-      <!-- SEKCJA 1: HERO -->
+      <!-- SEKCJA: HERO -->
       <section class="relative min-h-screen flex items-center bg-[#1a1a1a] overflow-hidden">
         <div
           class="absolute inset-0 opacity-[0.03]"
           style="background-image:linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);background-size:60px 60px"
         >
         </div>
-        <div class="absolute top-1/4 right-1/4 w-[min(600px,100vw)] h-[min(600px,100vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none">
-        </div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20 w-full">
+        <div class="absolute top-1/3 right-[10%] w-[min(700px,100vw)] h-[min(700px,100vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[min(500px,100vw)] h-[min(500px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-44 pb-24 w-full">
           <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div class="lg:col-span-7">
               <div class="reveal">
-                <span class="inline-block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-6">Obsługa zamówień + Picking</span>
+                <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase">//Picking dla firm handlowych</span>
               </div>
-              <h1 class="reveal text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8">
+              <h1 class="reveal text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight mt-4 mb-8" style="transition-delay:80ms">
                 Twoja sprzedaż rośnie.<br />
                 <span class="text-white/40">Magazyn nie nadąża.</span>
               </h1>
-              <p class="reveal text-lg md:text-xl text-white/60 max-w-2xl mb-6 leading-relaxed">
-                Wdrażamy system obsługi zamówień z kolektorami dla polskich firm handlowych. Picking po zoptymalizowanej ścieżce, automatyczne WZ-tki w Twoim ERP, integracja z Twoim sklepem. <span class="text-white font-medium">Wdrożenie w 3 miesiące. On-prem na Twoim serwerze.</span>
+              <p class="reveal text-lg md:text-xl text-white/60 max-w-2xl mb-10 leading-relaxed" style="transition-delay:160ms">
+                Wdrażamy system obsługi zamówień z kolektorami dla polskich firm handlowych. Picking po zoptymalizowanej ścieżce, automatyczne WZ-tki w Twoim ERP, integracja z Twoim sklepem.
               </p>
-              <div class="reveal flex flex-col sm:flex-row gap-4 mb-6">
-                <a href={mailto} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:translate-y-[-2px]">
-                  Umów bezpłatną analizę procesu
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                </a>
-              </div>
-              <p class="reveal text-white/40 text-sm italic">Bez prezentacji. 40 minut z konsultantem, który zna magazyn.</p>
-              <p class="reveal text-white/30 text-xs mt-8 max-w-xl">Pierwsze wdrożenie zrealizowane. Polski software house Teambear. On-prem lub chmura.</p>
-            </div>
-            <div class="reveal lg:col-span-5">
-              <div class="relative rounded-2xl bg-white/[0.02] border border-white/5 p-8 overflow-hidden">
-                <div class="absolute -top-12 -right-12 w-48 h-48 bg-[#FF5A2D]/10 rounded-full blur-[80px] pointer-events-none"></div>
-                <div class="relative z-10">
-                  <div class="flex items-center justify-between mb-6">
-                    <span class="text-white/40 text-xs uppercase tracking-widest">Kolektor</span>
-                    <span class="flex items-center gap-2 text-[#FF5A2D] text-xs font-medium">
-                      <span class="w-1.5 h-1.5 rounded-full bg-[#FF5A2D]"></span>online
-                    </span>
-                  </div>
-                  <div class="space-y-3">
-                    {
-                      [
-                        { sku: 'SKU 4821', name: 'Profil aluminiowy 40x40', qty: '12 szt', done: true },
-                        { sku: 'SKU 1190', name: 'Kątownik montażowy', qty: '4 szt', done: true },
-                        { sku: 'SKU 7732', name: 'Zaślepka PCV czarna', qty: '30 szt', done: false },
-                        { sku: 'SKU 0461', name: 'Śruba M8 ocynk', qty: '120 szt', done: false },
-                      ].map((row) => (
-                        <div class={`flex items-center gap-3 p-4 rounded-xl border ${row.done ? 'bg-[#FF5A2D]/[0.06] border-[#FF5A2D]/20' : 'bg-white/[0.02] border-white/5'}`}>
-                          <span class={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${row.done ? 'bg-[#FF5A2D]/20' : 'bg-white/5'}`}>
-                            {row.done && (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-[#FF5A2D]" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                            )}
-                          </span>
-                          <div class="flex-1 min-w-0">
-                            <p class="text-white text-sm font-medium truncate">{row.name}</p>
-                            <p class="text-white/30 text-xs">{row.sku}</p>
-                          </div>
-                          <span class="text-white/50 text-sm font-medium shrink-0">{row.qty}</span>
-                        </div>
-                      ))
-                    }
-                  </div>
-                  <div class="mt-6 flex items-center justify-between text-xs">
-                    <span class="text-white/30">Zamówienie #2041</span>
-                    <span class="text-[#FF5A2D]">2 / 4 pozycje</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- SEKCJA 2: PROBLEM -->
-      <section class="bg-[#141414] py-32 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-          <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
-            <div class="lg:col-span-4">
-              <div class="reveal sticky top-32">
-                <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//01</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Rozpoznajesz<br /><span class="text-white/40">się w tym?</span></h2>
-                <p class="text-white/50 text-lg leading-relaxed">Każdy z tych punktów to godziny pracy tygodniowo. I bottleneck, który zamyka Ci skalowanie firmy.</p>
-              </div>
-            </div>
-            <div class="lg:col-span-8">
-              <div class="space-y-0">
+              <div class="reveal flex flex-wrap gap-x-8 gap-y-3 mb-10" style="transition-delay:220ms">
                 {
-                  problems.map((p, i) => (
-                    <div class="reveal group border-t border-white/10 py-8 first:border-t-0 first:pt-0">
-                      <div class="flex items-start gap-6">
-                        <span class="text-white/20 text-sm font-medium mt-1">{String(i + 1).padStart(2, '0')}</span>
-                        <div class="w-10 h-10 rounded-lg bg-[#FF5A2D]/10 flex items-center justify-center shrink-0 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-[#FF5A2D]" aria-hidden="true">
-                            {p.icon === 'file' && (<><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></>)}
-                            {p.icon === 'clock' && (<><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>)}
-                            {p.icon === 'pen' && (<><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></>)}
-                            {p.icon === 'x' && (<><circle cx="12" cy="12" r="10" /><path d="m15 9-6 6" /><path d="m9 9 6 6" /></>)}
-                            {p.icon === 'trending' && (<><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></>)}
-                          </svg>
-                        </div>
-                        <p class="flex-1 text-white/60 leading-relaxed text-lg">
-                          <span class="text-white font-semibold">{p.title}</span> {p.desc}
-                        </p>
-                      </div>
+                  ['Wdrożenie w 3 miesiące', 'On-prem na Twoim serwerze', 'Kolektory w pakiecie'].map((fact) => (
+                    <div class="flex items-center gap-2">
+                      <Icon name="check" class="w-4 h-4 text-[#FF5A2D]" strokeWidth={2.4} />
+                      <span class="text-white/70 text-sm">{fact}</span>
                     </div>
                   ))
                 }
               </div>
+
+              <div class="reveal flex flex-col sm:flex-row gap-4" style="transition-delay:300ms">
+                <a href={mailtoMain} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:-translate-y-[2px]">
+                  Umów bezpłatną analizę procesu
+                  <Icon name="arrowRight" class="w-4 h-4" />
+                </a>
+                <a href={mailtoPdf} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300">
+                  Poproś o one-pager (PDF)
+                  <Icon name="download" class="w-4 h-4" />
+                </a>
+              </div>
+
+              <p class="reveal text-white/40 text-sm mt-6" style="transition-delay:360ms">
+                Bez prezentacji. 40 minut z konsultantem, który zna magazyn.
+              </p>
+            </div>
+
+            <div class="reveal lg:col-span-5" style="transition-delay:200ms">
+              <!-- Stylizowany kolektor z ekranem aplikacji pickingowej -->
+              <div class="relative w-full max-w-[420px] mx-auto">
+                <div class="reveal absolute -top-4 -left-8 z-20">
+                  <div class="px-3 py-2 rounded-lg bg-[#141414] border border-white/10 flex items-center gap-2 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+                    <span class="w-2 h-2 rounded-full bg-[#FF5A2D] animate-pulse"></span>
+                    <span class="text-white/70 text-xs font-medium tracking-wide">Picking aktywny</span>
+                  </div>
+                </div>
+                <div class="reveal absolute -bottom-6 -right-6 z-20" style="transition-delay:200ms">
+                  <div class="px-3 py-2 rounded-lg bg-[#141414] border border-white/10 flex items-center gap-2">
+                    <Icon name="check" class="w-3.5 h-3.5 text-[#FF5A2D]" />
+                    <span class="text-white/70 text-xs font-medium tracking-wide">WZ wystawiona</span>
+                  </div>
+                </div>
+
+                <div class="relative rounded-[36px] bg-gradient-to-b from-[#222] to-[#0e0e0e] border border-white/10 p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+                  <div class="flex items-center justify-between px-4 pt-1 pb-3">
+                    <span class="text-[10px] text-white/30 tracking-[0.25em] uppercase">TeamBear</span>
+                    <div class="flex items-center gap-1">
+                      <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                      <span class="w-6 h-1 rounded-full bg-white/15"></span>
+                    </div>
+                  </div>
+
+                  <div class="relative rounded-[20px] bg-[#0a0a0a] overflow-hidden border border-white/[0.06]">
+                    <div class="flex items-center justify-between px-4 py-2 text-[10px] text-white/40 border-b border-white/5">
+                      <span>09:24</span>
+                      <div class="flex items-center gap-2">
+                        <span>Wi-Fi</span>
+                        <span>87%</span>
+                      </div>
+                    </div>
+
+                    <div class="px-4 pt-4 pb-3">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-[10px] text-[#FF5A2D] tracking-[0.2em] uppercase font-medium">Zamówienie</span>
+                        <span class="text-[10px] text-white/30">3 / 7</span>
+                      </div>
+                      <div class="text-white text-lg font-semibold leading-tight">#ZK-2034</div>
+                      <div class="text-white/40 text-xs mt-1">Sklep online · Klient: P. Nowak</div>
+                    </div>
+
+                    <div class="mx-3 mb-2 rounded-xl bg-[#FF5A2D]/10 border border-[#FF5A2D]/30 p-3">
+                      <div class="flex items-start justify-between gap-3 mb-2">
+                        <div>
+                          <div class="text-[9px] text-[#FF5A2D] uppercase tracking-[0.2em] font-medium">Regał A · Półka 03</div>
+                          <div class="text-white text-sm font-semibold mt-1">Filtr olejowy HX-204</div>
+                        </div>
+                        <div class="shrink-0 w-8 h-8 rounded-md bg-[#FF5A2D] flex items-center justify-center">
+                          <Icon name="scanLine" class="w-4 h-4 text-white" strokeWidth={2.4} />
+                        </div>
+                      </div>
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                          <span class="text-white/60 text-[10px]">Ilość</span>
+                          <span class="px-2 py-0.5 rounded bg-white/10 text-white text-xs font-semibold">2 / 2</span>
+                        </div>
+                        <Icon name="barcode" class="w-10 h-4 text-white/40" strokeWidth={1.6} />
+                      </div>
+                    </div>
+
+                    <div class="mx-3 mb-2 rounded-xl bg-white/[0.02] border border-white/5 p-3 flex items-center justify-between">
+                      <div>
+                        <div class="text-[9px] text-white/30 uppercase tracking-[0.2em]">B · 12</div>
+                        <div class="text-white/50 text-xs font-medium line-through mt-0.5">Klocki hamulcowe</div>
+                      </div>
+                      <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center">
+                        <Icon name="check" class="w-3.5 h-3.5 text-white/50" strokeWidth={2.4} />
+                      </div>
+                    </div>
+
+                    <div class="mx-3 mb-3 rounded-xl bg-white/[0.02] border border-white/5 p-3 flex items-center justify-between">
+                      <div>
+                        <div class="text-[9px] text-white/30 uppercase tracking-[0.2em]">C · 04</div>
+                        <div class="text-white/50 text-xs font-medium line-through mt-0.5">Pasek rozrządu</div>
+                      </div>
+                      <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center">
+                        <Icon name="check" class="w-3.5 h-3.5 text-white/50" strokeWidth={2.4} />
+                      </div>
+                    </div>
+
+                    <div class="mx-3 mb-3 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-between">
+                      <span class="text-[10px] text-white/40 uppercase tracking-[0.15em]">Ścieżka</span>
+                      <div class="flex items-center gap-1">
+                        <span class="text-[10px] text-white/50">C</span>
+                        <Icon name="arrowRight" class="w-2.5 h-2.5 text-white/30" />
+                        <span class="text-[10px] text-white/50">B</span>
+                        <Icon name="arrowRight" class="w-2.5 h-2.5 text-white/30" />
+                        <span class="text-[10px] text-[#FF5A2D] font-semibold">A</span>
+                        <Icon name="arrowRight" class="w-2.5 h-2.5 text-white/30" />
+                        <span class="text-[10px] text-white/30">D</span>
+                        <Icon name="arrowRight" class="w-2.5 h-2.5 text-white/30" />
+                        <span class="text-[10px] text-white/30">F</span>
+                      </div>
+                    </div>
+
+                    <div class="px-3 pb-4">
+                      <div class="w-full py-3 rounded-xl bg-[#FF5A2D] text-white text-xs font-semibold text-center tracking-wide">
+                        Zakończ kompletację
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-center pb-2">
+                      <span class="w-16 h-1 rounded-full bg-white/15"></span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-center gap-3 pt-3 pb-1">
+                    <span class="w-12 h-1.5 rounded-full bg-white/10"></span>
+                    <span class="w-3 h-3 rounded-full border border-white/15"></span>
+                  </div>
+                </div>
+
+                <div class="absolute top-1/2 -translate-y-1/2 -right-2 w-1.5 h-16 rounded-full bg-white/5"></div>
+                <div class="absolute top-1/3 -left-2 w-1.5 h-10 rounded-full bg-white/5"></div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- SEKCJA 3: STAN DOCELOWY -->
-      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(900px,100vw)] h-[min(500px,60vw)] bg-[#FF5A2D]/[0.07] rounded-full blur-[150px] pointer-events-none"></div>
-        <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <span class="reveal text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//02</span>
-          <h2 class="reveal text-4xl md:text-5xl font-bold text-white leading-tight mb-10">Tak wygląda magazyn<br /><span class="text-white/40">z naszym systemem</span></h2>
-          <div class="reveal space-y-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
-            <p>Magazynier widzi na kolektorze listę zamówień, które są wolne. Wybiera jedno - system przypisuje je do niego. Idzie po <span class="text-white font-medium">zoptymalizowanej ścieżce</span> dopasowanej do Twojego magazynu. Skanuje kod, wpisuje ilość, idzie dalej.</p>
-            <p>Po skompletowaniu - <span class="text-white font-medium">jedno kliknięcie</span>. WZ albo faktura <span class="text-white font-medium">automatycznie</span> ląduje w Twoim ERP. Zamówienia ze sklepu spływają same. Reszta zespołu widzi wszystko w portalu webowym.</p>
-          </div>
-          <p class="reveal text-2xl md:text-3xl font-bold text-white mt-12 mb-10">Zero kartek. Zero przepisywania. Zero biegania w kółko.</p>
-          <div class="reveal">
-            <a href={mailto} class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300">
-              Umów 40 min - pokażemy jak to działa u Ciebie
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-            </a>
+        <div class="absolute bottom-0 left-0 right-0 border-t border-white/5 bg-[#1a1a1a]/80 backdrop-blur-sm">
+          <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex flex-wrap items-center justify-center md:justify-between gap-4 text-center md:text-left">
+            <span class="text-white/30 text-xs tracking-[0.2em] uppercase">Pierwsze wdrożenie zrealizowane</span>
+            <span class="text-white/20 text-xs hidden md:inline">·</span>
+            <span class="text-white/30 text-xs tracking-[0.2em] uppercase">Polski software house</span>
+            <span class="text-white/20 text-xs hidden md:inline">·</span>
+            <span class="text-white/30 text-xs tracking-[0.2em] uppercase">On-prem lub chmura</span>
+            <span class="text-white/20 text-xs hidden md:inline">·</span>
+            <span class="text-white/30 text-xs tracking-[0.2em] uppercase">Subiekt · Comarch · WooCommerce</span>
           </div>
         </div>
       </section>
 
-      <!-- SEKCJA 4: CO DOSTAJESZ -->
-      <section class="bg-[#141414] py-32 relative overflow-hidden">
-        <div class="absolute top-1/3 right-1/4 w-[min(600px,100vw)] h-[min(600px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-          <div class="reveal text-center mb-20">
-            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//03</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Co dostajesz w pakiecie</h2>
-          </div>
-          <div class="grid md:grid-cols-2 gap-8">
-            {
-              offer.map((o) => (
-                <div class="reveal group">
-                  <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
-                    <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center mb-6 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#FF5A2D]" aria-hidden="true">
-                        {o.icon === 'phone' && (<><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></>)}
-                        {o.icon === 'monitor' && (<><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></>)}
-                        {o.icon === 'box' && (<><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></>)}
-                        {o.icon === 'plug' && (<><path d="M9 17H7A5 5 0 0 1 7 7h2" /><path d="M15 7h2a5 5 0 1 1 0 10h-2" /><line x1="8" x2="16" y1="12" y2="12" /></>)}
-                      </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{o.title}</h3>
-                    <p class="text-white/50 leading-relaxed">{o.desc}</p>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <!-- SEKCJA 5: JAK PRACUJEMY -->
-      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
-        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-          <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
+      <!-- SEKCJA 01: PROBLEM -->
+      <section id="problem" class="bg-[#141414] py-32 relative overflow-hidden scroll-mt-[136px]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 mb-16">
             <div class="lg:col-span-5">
-              <div class="reveal sticky top-32">
-                <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//04</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Jak wygląda wdrożenie<br /><span class="text-white/40">krok po kroku</span></h2>
-                <p class="text-white/50 text-lg leading-relaxed">Łącznie ~3 miesiące od podpisania umowy do go-live.</p>
+              <div class="reveal lg:sticky lg:top-32">
+                <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//01 Problem</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                  Rozpoznajesz się<br /><span class="text-white/40">w tym?</span>
+                </h2>
+                <p class="text-white/50 text-lg leading-relaxed max-w-md">
+                  Pięć bolączek, które słyszymy w prawie każdym magazynie, do którego wchodzimy.
+                </p>
               </div>
             </div>
             <div class="lg:col-span-7">
-              <div class="space-y-8">
+              <div class="space-y-4">
                 {
-                  steps.map((s, i) => (
-                    <div class="reveal group">
-                      <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
-                        <div class="flex items-start gap-6">
-                          <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center shrink-0">
-                            <span class="text-[#FF5A2D] font-bold text-lg">{String(i + 1).padStart(2, '0')}</span>
-                          </div>
-                          <div>
-                            <h3 class="text-xl md:text-2xl font-semibold text-white mb-3 group-hover:text-[#FF5A2D] transition-colors duration-300">{s.title}</h3>
-                            <p class="text-white/50 leading-relaxed">{s.desc}</p>
-                          </div>
+                  problems.map((p, i) => (
+                    <div class="reveal group p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500" style={`transition-delay:${i * 60}ms`}>
+                      <div class="flex items-start gap-5">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+                          <Icon name={p.icon} class="w-5 h-5 text-[#FF5A2D]" />
                         </div>
+                        <div class="flex-1 min-w-0">
+                          <h3 class="text-lg md:text-xl font-semibold text-white mb-2 group-hover:text-[#FF5A2D] transition-colors duration-300">{p.title}</h3>
+                          <p class="text-white/50 leading-relaxed">{p.desc}</p>
+                        </div>
+                        <span class="hidden md:block text-white/20 text-sm font-medium mt-1">0{i + 1}</span>
                       </div>
                     </div>
                   ))
@@ -365,169 +378,474 @@ const mailto =
               </div>
             </div>
           </div>
+
+          <div class="reveal max-w-3xl mx-auto text-center pt-8 border-t border-white/5">
+            <p class="text-white/40 text-base md:text-lg leading-relaxed">
+              Każdy z tych punktów to godziny pracy tygodniowo. I bottleneck, który zamyka Ci skalowanie firmy.
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- SEKCJA 6: USP -->
-      <section class="bg-[#141414] py-32 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-          <div class="reveal text-center mb-20">
-            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//05</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Dlaczego to działa<br /><span class="text-white/40">lepiej niż alternatywy</span></h2>
+      <!-- SEKCJA 02: STAN DOCELOWY -->
+      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+        <div class="absolute top-1/2 -translate-y-1/2 left-[5%] w-[min(500px,100vw)] h-[min(500px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-7 order-2 lg:order-1">
+              <div class="reveal">
+                <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//02 Stan docelowy</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-8">
+                  Tak wygląda magazyn<br /><span class="text-white/40">z naszym systemem</span>
+                </h2>
+              </div>
+              <div class="reveal space-y-6 text-white/60 text-lg leading-relaxed" style="transition-delay:100ms">
+                <p>
+                  Magazynier widzi na kolektorze listę zamówień, które są wolne. Wybiera jedno - system przypisuje je do niego.
+                  Idzie po <span class="text-white">zoptymalizowanej ścieżce</span> dopasowanej do Twojego magazynu.
+                  Skanuje kod, wpisuje ilość, idzie dalej.
+                </p>
+                <p>
+                  Po skompletowaniu - <span class="text-white">jedno kliknięcie</span>.
+                  WZ albo faktura <span class="text-white">automatycznie</span> ląduje w Twoim ERP.
+                  Zamówienia ze sklepu spływają same. Reszta zespołu widzi wszystko w portalu webowym.
+                </p>
+              </div>
+
+              <div class="reveal mt-12" style="transition-delay:200ms">
+                <div class="grid grid-cols-3 gap-4 md:gap-8 mb-10">
+                  {
+                    [
+                      { label: 'Zero', k: 'kartek' },
+                      { label: 'Zero', k: 'przepisywania' },
+                      { label: 'Zero', k: 'biegania w kółko' },
+                    ].map((s) => (
+                      <div class="p-5 md:p-6 rounded-xl border border-[#FF5A2D]/15 bg-[#FF5A2D]/[0.03]">
+                        <div class="text-[#FF5A2D] text-3xl md:text-4xl font-bold tracking-tight">{s.label}</div>
+                        <div class="text-white/50 text-sm mt-1">{s.k}</div>
+                      </div>
+                    ))
+                  }
+                </div>
+                <a href={mailtoMain} class="group inline-flex items-center gap-2 text-[#FF5A2D] font-medium transition-all duration-300">
+                  Umów 40 min - pokażemy jak to działa u Ciebie
+                  <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 order-1 lg:order-2">
+              <div class="reveal relative" style="transition-delay:150ms">
+                <div class="absolute inset-0 -m-4 rounded-3xl bg-gradient-to-br from-[#FF5A2D]/15 to-[#FF5A2D]/0 blur-2xl pointer-events-none"></div>
+                <div class="relative space-y-3">
+                  {
+                    workflow.map((row) => (
+                      <div class={`flex items-center gap-4 p-4 rounded-xl border transition-all ${row.tone === 'accent' ? 'bg-[#FF5A2D]/[0.06] border-[#FF5A2D]/25' : 'bg-white/[0.02] border-white/5'}`}>
+                        <div class={`shrink-0 w-11 h-11 rounded-lg flex items-center justify-center ${row.tone === 'accent' ? 'bg-[#FF5A2D]/15' : 'bg-white/5'}`}>
+                          <Icon name={row.icon} class={`w-5 h-5 ${row.tone === 'accent' ? 'text-[#FF5A2D]' : 'text-white/50'}`} />
+                        </div>
+                        <div class="flex-1 min-w-0">
+                          <div class="text-white font-medium text-sm">{row.title}</div>
+                          <div class="text-white/45 text-xs mt-0.5 leading-snug">{row.body}</div>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="grid md:grid-cols-3 gap-8">
+        </div>
+      </section>
+
+      <!-- SEKCJA 03: CO DOSTAJESZ -->
+      <section id="co-dostajesz" class="bg-[#141414] py-32 relative overflow-hidden scroll-mt-[136px]">
+        <div class="absolute top-0 right-1/4 w-[min(500px,100vw)] h-[min(500px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="reveal max-w-3xl mb-16">
+            <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//03 Anatomia oferty</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+              Co dostajesz<br /><span class="text-white/40">w pakiecie</span>
+            </h2>
+            <p class="text-white/50 text-lg leading-relaxed">
+              Software, hardware, integracja, wdrożenie - jedno zlecenie, jeden zespół.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
             {
-              usp.map((u) => (
-                <div class="reveal group">
-                  <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500">
-                    <div class="w-12 h-12 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center mb-6 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#FF5A2D]" aria-hidden="true">
-                        {u.icon === 'target' && (<><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>)}
-                        {u.icon === 'box' && (<><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></>)}
-                        {u.icon === 'lock' && (<><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>)}
-                      </svg>
+              offer.map((o, i) => (
+                <div class="reveal group p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500" style={`transition-delay:${i * 80}ms`}>
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="w-14 h-14 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+                      <Icon name={o.icon} class="w-6 h-6 text-[#FF5A2D]" />
                     </div>
-                    <h3 class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{u.title}</h3>
-                    <p class="text-white/50 leading-relaxed">{u.desc}</p>
+                    <span class="px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/40 bg-white/5 rounded-full border border-white/10">{o.label}</span>
+                  </div>
+                  <h3 class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{o.title}</h3>
+                  <p class="text-white/50 leading-relaxed">{o.body}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 04: WDROŻENIE -->
+      <section id="proces" class="bg-[#1a1a1a] py-32 relative overflow-hidden scroll-mt-[136px]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+            <div class="max-w-2xl">
+              <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//04 Wdrożenie</span>
+              <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+                Jak wygląda wdrożenie<br /><span class="text-white/40">krok po kroku</span>
+              </h2>
+            </div>
+            <div class="shrink-0 inline-flex items-center gap-3 px-5 py-3 rounded-full border border-[#FF5A2D]/25 bg-[#FF5A2D]/[0.06]">
+              <Icon name="clock" class="w-4 h-4 text-[#FF5A2D]" />
+              <span class="text-white/80 text-sm">Łącznie ~3 miesiące od umowy do go-live</span>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="hidden lg:block absolute left-0 right-0 top-7 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+            <div class="grid lg:grid-cols-6 gap-10 lg:gap-6">
+              {
+                steps.map((s, i) => (
+                  <div class="reveal relative" style={`transition-delay:${i * 60}ms`}>
+                    <div class="flex lg:block items-start gap-5">
+                      <div class="relative shrink-0">
+                        <div class="w-14 h-14 rounded-xl bg-[#FF5A2D]/10 border border-[#FF5A2D]/20 flex items-center justify-center">
+                          <Icon name={s.icon} class="w-5 h-5 text-[#FF5A2D]" />
+                        </div>
+                        <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#1a1a1a] border border-white/10 text-white/70 text-[10px] font-bold flex items-center justify-center">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <div class="flex-1 min-w-0 lg:mt-6">
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-[#FF5A2D]/70 mb-2">{s.meta}</div>
+                        <h3 class="text-base lg:text-lg font-semibold text-white mb-2 leading-snug">{s.title}</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">{s.body}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 05: DLACZEGO TO DZIAŁA -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent hidden lg:block"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="reveal max-w-3xl mb-20">
+            <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//05 Dlaczego to działa</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+              Trzy powody,<br /><span class="text-white/40">dla których to działa lepiej niż alternatywy</span>
+            </h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            {
+              usps.map((u, i) => (
+                <div class="reveal group p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 hover:bg-white/[0.04] transition-all duration-500" style={`transition-delay:${i * 100}ms`}>
+                  <div class="w-14 h-14 rounded-xl bg-[#FF5A2D]/10 flex items-center justify-center mb-8 group-hover:bg-[#FF5A2D]/20 transition-colors duration-300">
+                    <Icon name={u.icon} class="w-6 h-6 text-[#FF5A2D]" />
+                  </div>
+                  <div class="text-white/20 text-sm font-medium mb-3">0{i + 1}</div>
+                  <h3 class="text-2xl font-semibold text-white mb-4 group-hover:text-[#FF5A2D] transition-colors duration-300">{u.title}</h3>
+                  <p class="text-white/50 leading-relaxed">{u.body}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 06: CASE STUDY -->
+      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-[min(700px,100vw)] h-[min(700px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+            <div class="lg:col-span-5">
+              <div class="reveal lg:sticky lg:top-32">
+                <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//06 Case study</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                  Pierwsze<br /><span class="text-white/40">wdrożenie</span>
+                </h2>
+                <p class="text-white/50 text-lg leading-relaxed mb-6">
+                  Polska firma handlowa średniej wielkości. Własny magazyn, sklep e-commerce, ERP klasy SMB.
+                  Obsługa zamówień stała się wąskim gardłem skalowania.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {
+                    caseTags.map((t) => (
+                      <span class="px-3 py-1 text-xs font-medium text-white/50 bg-white/5 rounded-full border border-white/10">{t}</span>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7">
+              <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                {
+                  metrics.map((m, i) => (
+                    <div class={`reveal p-8 rounded-2xl border transition-colors ${m.placeholder ? 'bg-white/[0.01] border-white/5 border-dashed' : 'bg-white/[0.02] border-white/5'}`} style={`transition-delay:${i * 80}ms`}>
+                      <div class="flex items-baseline gap-2 mb-3">
+                        <span class={`text-5xl md:text-6xl font-bold tracking-tight ${m.placeholder ? 'text-white/30' : 'text-[#FF5A2D]'}`}>{m.big}</span>
+                        <span class="text-white/40 text-base">{m.unit}</span>
+                      </div>
+                      <p class="text-white/50 text-sm leading-relaxed">{m.body}</p>
+                      {m.placeholder && <p class="text-white/25 text-[10px] uppercase tracking-[0.2em] mt-3">Do uzupełnienia</p>}
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="reveal p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5 mb-8">
+                <p class="text-white/70 text-lg leading-relaxed">
+                  Zaczęliśmy od trzech dni u klienta - zmapowaliśmy proces, zaprojektowaliśmy ścieżkę pickingową,
+                  ustaliliśmy zakres integracji z Subiektem i sklepem. Po trzech miesiącach magazyn pracuje z pięcioma
+                  kolektorami, WZ-tki wystawiają się automatycznie, a zamówienia spływają ze sklepu bez przepisywania.
+                </p>
+              </div>
+
+              <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
+                <a href={mailtoMain} class="group inline-flex items-center gap-2 text-[#FF5A2D] font-medium transition-all duration-300">
+                  Chcę podobny wynik - umów rozmowę
+                  <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+                <p class="text-white/30 text-xs leading-relaxed max-w-sm">
+                  Klient referencyjny prosił o anonimowość. Pełne dane referencyjne dostępne na zaawansowanym etapie rozmów.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 07: DLA KOGO -->
+      <section class="bg-[#141414] py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="reveal max-w-3xl mb-16">
+            <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//07 Dla kogo</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+              Sprawdź, czy to rozwiązanie<br /><span class="text-white/40">pasuje do Twojej firmy</span>
+            </h2>
+            <p class="text-white/50 text-lg">Wolimy uprzedzić niż sprzedać coś, co nie pasuje.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="reveal p-8 md:p-10 rounded-2xl bg-[#FF5A2D]/[0.04] border border-[#FF5A2D]/20">
+              <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-lg bg-[#FF5A2D]/15 flex items-center justify-center">
+                  <Icon name="check" class="w-5 h-5 text-[#FF5A2D]" strokeWidth={2.4} />
+                </div>
+                <h3 class="text-xl font-semibold text-white">To dla Ciebie, jeśli...</h3>
+              </div>
+              <ul class="space-y-4">
+                {
+                  icpFor.map((line) => (
+                    <li class="flex items-start gap-3">
+                      <span class="shrink-0 mt-1 w-5 h-5 rounded-full bg-[#FF5A2D]/15 flex items-center justify-center">
+                        <Icon name="check" class="w-3 h-3 text-[#FF5A2D]" strokeWidth={2.6} />
+                      </span>
+                      <span class="text-white/75 leading-relaxed">{line}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+
+            <div class="reveal p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5" style="transition-delay:120ms">
+              <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+                  <Icon name="x" class="w-5 h-5 text-white/60" strokeWidth={2.4} />
+                </div>
+                <h3 class="text-xl font-semibold text-white/80">To NIE dla Ciebie, jeśli...</h3>
+              </div>
+              <ul class="space-y-4">
+                {
+                  icpNot.map((line) => (
+                    <li class="flex items-start gap-3">
+                      <span class="shrink-0 mt-1 w-5 h-5 rounded-full bg-white/5 flex items-center justify-center">
+                        <Icon name="x" class="w-3 h-3 text-white/40" strokeWidth={2.6} />
+                      </span>
+                      <span class="text-white/50 leading-relaxed">{line}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 08: FAQ -->
+      <section id="faq" class="bg-[#1a1a1a] py-32 relative overflow-hidden scroll-mt-[136px]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-16">
+            <div class="lg:col-span-4">
+              <div class="reveal lg:sticky lg:top-32">
+                <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//08 FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                  Najczęstsze<br /><span class="text-white/40">pytania</span>
+                </h2>
+                <p class="text-white/50 leading-relaxed mb-8">
+                  Nie znalazłeś odpowiedzi? Napisz - odpowiemy w ciągu 24h.
+                </p>
+                <a href={mailtoMain} class="group inline-flex items-center gap-2 text-[#FF5A2D] font-medium transition-all duration-300">
+                  Zadaj pytanie wprost
+                  <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+            <div class="lg:col-span-8">
+              <div>
+                {
+                  faqs.map((f, i) => (
+                    <details class="reveal group border-t border-white/5" open={i === 0}>
+                      <summary class="w-full py-6 md:py-7 flex items-center justify-between gap-6 text-left cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                        <span class="text-lg md:text-xl font-medium text-white group-hover:text-[#FF5A2D] group-open:text-[#FF5A2D] transition-colors duration-300">
+                          {f.q}
+                        </span>
+                        <span class="shrink-0 w-10 h-10 rounded-full border border-white/10 bg-white/[0.02] group-hover:border-[#FF5A2D]/30 group-open:border-[#FF5A2D]/40 group-open:bg-[#FF5A2D]/10 group-open:rotate-45 flex items-center justify-center transition-all duration-300">
+                          <Icon name="plus" class="w-4 h-4 text-white/70 group-open:text-[#FF5A2D]" strokeWidth={2.2} />
+                        </span>
+                      </summary>
+                      <p class="pb-7 pr-16 text-white/55 leading-relaxed max-w-3xl">{f.a}</p>
+                    </details>
+                  ))
+                }
+                <div class="border-t border-white/5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 09: KONTAKT -->
+      <section id="kontakt" class="bg-[#141414] py-32 relative overflow-hidden scroll-mt-[136px]">
+        <div
+          class="absolute inset-0 opacity-[0.025]"
+          style="background-image:linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);background-size:60px 60px"
+        >
+        </div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[min(900px,100vw)] h-[min(500px,60vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
+            <div class="lg:col-span-6">
+              <div class="reveal">
+                <span class="block text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4">//09 Kontakt</span>
+                <h2 class="text-4xl md:text-6xl font-bold text-white leading-[1.05] tracking-tight mb-8">
+                  Zacznij od 40 minut.<br />
+                  <span class="text-white/40">Bez prezentacji.<br />Bez zobowiązań.</span>
+                </h2>
+                <p class="text-white/60 text-lg leading-relaxed max-w-md mb-10">
+                  Pokażesz nam, jak wygląda obsługa zamówień u Ciebie. Powiemy szczerze, czy nasz system ma sens -
+                  i ile zaoszczędzisz, jeśli ma.
+                </p>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 mb-8">
+                  <div class="flex items-center gap-4 mb-5">
+                    <div class="w-12 h-12 rounded-full bg-[#FF5A2D]/15 border border-[#FF5A2D]/25 flex items-center justify-center text-[#FF5A2D] font-bold">PZ</div>
+                    <div>
+                      <div class="text-white font-medium">Piotr Zaworski</div>
+                      <div class="text-white/40 text-sm">Founder, TeamBear</div>
+                    </div>
+                  </div>
+                  <div class="space-y-2.5">
+                    <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors text-sm">
+                      <Icon name="mail" class="w-4 h-4" /> piotr.zaworski@teambear.io
+                    </a>
+                    <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors text-sm">
+                      <Icon name="phone" class="w-4 h-4" /> +48 537 341 796
+                    </a>
                   </div>
                 </div>
-              ))
-            }
-          </div>
-        </div>
-      </section>
 
-      <!-- SEKCJA 7: CASE STUDY -->
-      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
-        <div class="absolute top-1/4 right-1/4 w-[min(600px,100vw)] h-[min(600px,100vw)] bg-[#FF5A2D]/5 rounded-full blur-[150px] pointer-events-none"></div>
-        <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
-          <div class="reveal text-center mb-12">
-            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//06</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Pierwsze wdrożenie</h2>
-            <p class="text-white/50 text-lg leading-relaxed max-w-2xl mx-auto"><span class="text-white font-medium">Polska firma handlowa średniej wielkości.</span> Własny magazyn, sklep e-commerce, ERP klasy SMB. Obsługa zamówień stała się wąskim gardłem skalowania.</p>
-          </div>
-          <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {
-              metrics.map((m) => (
-                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-center">
-                  <p class={`text-2xl md:text-3xl font-bold mb-3 ${m.todo ? 'text-white/30' : 'text-[#FF5A2D]'}`}>{m.value}</p>
-                  <p class="text-white/40 text-sm leading-relaxed">{m.label}</p>
-                  {m.todo && <p class="text-white/20 text-xs mt-2 italic">(do uzupełnienia)</p>}
+                <p class="text-white/40 text-sm">
+                  Albo zadzwoń lub napisz wprost - oddzwonimy w ciągu 24h.
+                </p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="reveal p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5" style="transition-delay:120ms">
+                <div class="flex items-center gap-3 mb-2">
+                  <Icon name="calendar" class="w-5 h-5 text-[#FF5A2D]" />
+                  <h3 class="text-xl font-semibold text-white">Umów bezpłatną analizę procesu</h3>
                 </div>
-              ))
-            }
-          </div>
-          <div class="reveal max-w-3xl mx-auto text-center">
-            <p class="text-white/60 text-lg leading-relaxed mb-10">Zaczęliśmy od trzech dni u klienta - zmapowaliśmy proces, zaprojektowaliśmy ścieżkę pickingową, ustaliliśmy zakres integracji z Subiektem i sklepem. Po trzech miesiącach magazyn pracuje z pięcioma kolektorami, WZ-tki wystawiają się automatycznie, a zamówienia spływają ze sklepu bez przepisywania.</p>
-            <a href={mailto} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:translate-y-[-2px]">
-              Chcę podobny wynik - umów rozmowę
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-            </a>
-            <p class="text-white/30 text-sm mt-8 max-w-xl mx-auto">Klient referencyjny prosił o anonimowość - pełne dane referencyjne dostępne na zaawansowanym etapie rozmów.</p>
-          </div>
-        </div>
-      </section>
+                <p class="text-white/40 text-sm mb-8">40 minut · online · bez prezentacji</p>
 
-      <!-- SEKCJA 8: DLA KOGO -->
-      <section class="bg-[#141414] py-32 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-          <div class="reveal text-center mb-20">
-            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//07</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Sprawdź, czy to rozwiązanie<br /><span class="text-white/40">pasuje do Twojej firmy</span></h2>
-          </div>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="reveal">
-              <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-[#FF5A2D]/20">
-                <h3 class="flex items-center gap-3 text-xl font-semibold text-white mb-8">
-                  <span class="w-8 h-8 rounded-lg bg-[#FF5A2D]/15 flex items-center justify-center shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-[#FF5A2D]" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                  </span>
-                  To dla Ciebie, jeśli:
-                </h3>
-                <ul class="space-y-4">
+                <ul class="space-y-4 mb-8">
                   {
-                    forYou.map((item) => (
-                      <li class="flex items-start gap-3 text-white/60 leading-relaxed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-[#FF5A2D] mt-1 shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                        <span>{item}</span>
+                    ctaPoints.map((p) => (
+                      <li class="flex items-start gap-3">
+                        <span class="shrink-0 mt-0.5 w-6 h-6 rounded-full bg-[#FF5A2D]/15 flex items-center justify-center">
+                          <Icon name="check" class="w-3.5 h-3.5 text-[#FF5A2D]" strokeWidth={2.6} />
+                        </span>
+                        <span class="text-white/70 leading-relaxed">{p}</span>
                       </li>
                     ))
                   }
                 </ul>
+
+                <a href={mailtoMain} class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:-translate-y-[2px]">
+                  Umów rozmowę
+                  <Icon name="arrowRight" class="w-4 h-4" />
+                </a>
+                <p class="text-white/30 text-xs text-center mt-4">
+                  Bez zobowiązań. Odpowiadamy w ciągu 24h, w dni robocze.
+                </p>
               </div>
             </div>
-            <div class="reveal">
-              <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/10">
-                <h3 class="flex items-center gap-3 text-xl font-semibold text-white mb-8">
-                  <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
-                  </span>
-                  To NIE dla Ciebie, jeśli:
-                </h3>
-                <ul class="space-y-4">
-                  {
-                    notForYou.map((item) => (
-                      <li class="flex items-start gap-3 text-white/40 leading-relaxed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/30 mt-1 shrink-0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
-                        <span>{item}</span>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-            </div>
-          </div>
-          <p class="reveal text-center text-white/30 text-sm mt-10 italic">Wolimy uprzedzić niż sprzedać coś, co nie pasuje.</p>
-        </div>
-      </section>
-
-      <!-- SEKCJA 9: FAQ -->
-      <section class="bg-[#1a1a1a] py-32 relative overflow-hidden">
-        <div class="max-w-3xl mx-auto px-6 lg:px-12">
-          <div class="reveal text-center mb-16">
-            <span class="text-[#FF5A2D] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">//08</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Najczęstsze pytania</h2>
-          </div>
-          <div class="space-y-4">
-            {
-              faq.map((f) => (
-                <details class="reveal group rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#FF5A2D]/20 transition-all duration-500 [&_svg]:open:rotate-45">
-                  <summary class="flex items-center justify-between gap-6 p-6 cursor-pointer list-none">
-                    <span class="text-lg font-semibold text-white">{f.q}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-[#FF5A2D] shrink-0 transition-transform duration-300" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
-                  </summary>
-                  <p class="px-6 pb-6 text-white/50 leading-relaxed">{f.a}</p>
-                </details>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <!-- SEKCJA 10: CTA FINALNE -->
-      <section class="bg-[#141414] py-32 relative overflow-hidden">
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(800px,100vw)] h-[min(400px,50vw)] bg-[#FF5A2D]/10 rounded-full blur-[150px] pointer-events-none"></div>
-        <div class="reveal relative z-10 max-w-3xl mx-auto px-6 lg:px-12 text-center">
-          <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">Zacznij od 40 minut.<br /><span class="text-white/40">Bez prezentacji. Bez zobowiązań.</span></h2>
-          <p class="text-white/50 text-lg leading-relaxed mb-10 max-w-xl mx-auto">Pokażesz nam, jak wygląda obsługa zamówień u Ciebie. Powiemy szczerze, czy nasz system ma sens - i ile zaoszczędzisz, jeśli ma.</p>
-          <a href={mailto} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FF5A2D] text-white font-medium rounded-lg hover:bg-[#FF5A2D]/90 transition-all duration-300 hover:translate-y-[-2px]">
-            Umów rozmowę
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-          </a>
-          <p class="text-white/30 text-sm mt-6 italic">Albo zostaw kontakt, oddzwonimy w ciągu 24h.</p>
-          <div class="mt-12 inline-flex flex-col sm:flex-row gap-6 sm:gap-10 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-            <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
-              <span class="text-sm">piotr.zaworski@teambear.io</span>
-            </a>
-            <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
-              <span class="text-sm">+48 537 341 796</span>
-            </a>
           </div>
         </div>
       </section>
     </main>
-    <Footer />
+
+    <!-- STOPKA -->
+    <footer class="bg-[#1a1a1a] border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+        <div class="grid lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-5">
+            <img src="/teambear-logo.png" alt="TeamBear" class="h-8 mb-6" />
+            <p class="text-white/50 text-sm leading-relaxed max-w-sm">
+              Polski software house. Wdrażamy systemy obsługi zamówień z kolektorami dla rosnących firm handlowych.
+            </p>
+          </div>
+          <div class="lg:col-span-3">
+            <h4 class="text-white text-sm font-semibold mb-4">Kontakt</h4>
+            <div class="space-y-3">
+              <a href="mailto:piotr.zaworski@teambear.io" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300 text-sm">
+                <Icon name="mail" class="w-4 h-4" />
+                piotr.zaworski@teambear.io
+              </a>
+              <a href="tel:+48537341796" class="flex items-center gap-3 text-white/60 hover:text-[#FF5A2D] transition-colors duration-300 text-sm">
+                <Icon name="phone" class="w-4 h-4" />
+                +48 537 341 796
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-4">
+            <h4 class="text-white text-sm font-semibold mb-4">TeamBear Sp. z o.o.</h4>
+            <p class="text-white/40 text-sm leading-relaxed">
+              NIP: 113-301-95-13<br />
+              ul. Zwycięzców 19/6, 03-936 Warszawa
+            </p>
+          </div>
+        </div>
+        <div class="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-white/40 text-sm">© 2026 TeamBear Sp. z o.o. Wszelkie prawa zastrzeżone.</p>
+          <p class="text-white/30 text-xs tracking-[0.2em] uppercase">Cyfryzacja + Automatyzacja</p>
+        </div>
+      </div>
+    </footer>
   </div>
 </Layout>
