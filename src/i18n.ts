@@ -211,7 +211,7 @@ export const content = {
         note: 'Klient referencyjny prosił o anonimowość. Pełne dane referencyjne dostępne na zaawansowanym etapie rozmów.',
       },
       icp: {
-        eyebrow: '//07 Dla kogo',
+        eyebrow: '//06 Dla kogo',
         title1: 'Sprawdź, czy to rozwiązanie',
         title2: 'pasuje do Twojej firmy',
         lead: 'Wolimy uprzedzić niż sprzedać coś, co nie pasuje.',
@@ -233,7 +233,7 @@ export const content = {
         ],
       },
       faq: {
-        eyebrow: '//08 FAQ',
+        eyebrow: '//07 FAQ',
         title1: 'Najczęstsze',
         title2: 'pytania',
         side: 'Nie znalazłeś odpowiedzi? Napisz - odpowiemy w ciągu 24h.',
@@ -249,7 +249,7 @@ export const content = {
         ],
       },
       contact: {
-        eyebrow: '//09 Kontakt',
+        eyebrow: '//08 Kontakt',
         title1: 'Zacznij od 40 minut.',
         title2a: 'Bez prezentacji.',
         title2b: 'Bez zobowiązań.',
@@ -482,7 +482,7 @@ export const content = {
         note: 'The reference client asked to stay anonymous. Full reference details available at an advanced stage of talks.',
       },
       icp: {
-        eyebrow: '//07 Who it is for',
+        eyebrow: '//06 Who it is for',
         title1: 'Check whether this solution',
         title2: 'fits your company',
         lead: 'We would rather warn you than sell something that does not fit.',
@@ -504,7 +504,7 @@ export const content = {
         ],
       },
       faq: {
-        eyebrow: '//08 FAQ',
+        eyebrow: '//07 FAQ',
         title1: 'Frequently asked',
         title2: 'questions',
         side: 'Did not find an answer? Write to us - we reply within 24h.',
@@ -520,7 +520,7 @@ export const content = {
         ],
       },
       contact: {
-        eyebrow: '//09 Contact',
+        eyebrow: '//08 Contact',
         title1: 'Start with 40 minutes.',
         title2a: 'No sales deck.',
         title2b: 'No commitments.',
